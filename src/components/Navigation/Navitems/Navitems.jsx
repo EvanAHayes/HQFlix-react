@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import classes from './Navitems.module.css';
 
-const navItem = () => (
-    <div>
-       <li></li>
-    </div>
+const navItem = (props) => (
+       <li className={classes.NavigationItem}>
+           <a 
+           href={props.link}
+           className={props.active ? classes.active : null}>{props.children}></a>
+       </li>
+  
 );
 
 export default navItem;
