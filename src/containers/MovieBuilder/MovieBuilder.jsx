@@ -8,7 +8,7 @@ class MovieBuilder extends Component{
         return(
           <Aux>
              <div className={classes.Body}>
-
+                <p>This is where main content goes</p>
              </div>
           </Aux>
         );
