@@ -11,7 +11,9 @@ const Carousel = (props) => (
                      loop
                      nav
                      margin={8} >
-                         
+                         <div>
+                            
+                         </div>
         </OwlCarousel>
     </div>
 )
