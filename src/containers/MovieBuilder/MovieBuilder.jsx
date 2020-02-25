@@ -12,4 +12,5 @@ class MovieBuilder extends Component{
         );
     }
 }
+
  export default MovieBuilder;
