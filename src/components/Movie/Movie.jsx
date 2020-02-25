@@ -5,7 +5,6 @@
         return (
             <div className={classes.Body}>
                 <p>New Movies Coming Soon To Theather</p>
-
             </div>
         );
     }
