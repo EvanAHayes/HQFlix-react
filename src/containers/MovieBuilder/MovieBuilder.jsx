@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import Aux from '../../hoc/Aux';
-import classes from './MovieBuilder.module.css'
+import MovieMainPage from '../../components/Movie/Movie';
 
 class MovieBuilder extends Component{
 
     render(){
         return(
           <Aux>
-             <div className={classes.Body}>
-                <p>This is where main content goes</p>
-             </div>
+             <MovieMainPage />
           </Aux>
         );
     }
