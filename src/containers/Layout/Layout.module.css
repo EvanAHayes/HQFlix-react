@@ -1,4 +1,6 @@
-.container{
+.Content {
+    background-image: url(../../Images/darkMovieBG.jpg);
+    margin-top: 56px;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
