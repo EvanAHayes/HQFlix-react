@@ -3,7 +3,7 @@
 
     const Movie = () => (
             <div className={"container"}>
-                <p>New Movies Coming Soon To Theather</p>
+                <h1 className={'text-center mt-5 pt-5'}>New Movies Coming Soon To Theather</h1>
             </div>
     )
     
