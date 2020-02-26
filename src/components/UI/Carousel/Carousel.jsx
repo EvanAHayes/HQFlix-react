@@ -30,9 +30,6 @@ const MovieCarousel = (props) => (
              <img src={Logo} alt="logo" />
              <img src={Cloud} alt="Demo" />
              <img src={Demo} alt="Demo" />
-            
-            
-            
      </Carousel>
     </div>
 )
