@@ -10,10 +10,16 @@ const Carousel = (props) => (
                      className={"owl-theme"}
                      loop
                      nav
-                     margin={8} >
-                         <div>
-                            
-                         </div>
+                     margin={8} 
+                     autoPlay={true}>
+          <div ><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
+           <div><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
+           <div><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
+           <div><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
+           <div><img className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
+           <div><img className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
+           <div><img className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>               
+
         </OwlCarousel>
     </div>
 )
