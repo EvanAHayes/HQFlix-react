@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './NewCOntent.module.css'
+import classes from './NewContent.module.css';
 
 const NewContent = () => (
   <div className={classes.Headcontent}>
