@@ -1,27 +1,14 @@
 import React from 'react';
-import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';  
-import 'owl.carousel/dist/assets/owl.theme.default.css'; 
+import Carousel, { Dots } from '@brainhubeu/react-carousel';
+import '@brainhubeu/react-carousel/lib/style.css';
 
 
-const Carousel = (props) => (
+const MovieCarousel = (props) => (
     <div>
-        <OwlCarousel items={3}
-                     className={"owl-theme"}
-                     loop
-                     nav
-                     margin={8} 
-                     autoPlay={true}>
-          <div ><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
-           <div><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
-           <div><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
-           <div><img  className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
-           <div><img className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
-           <div><img className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>  
-           <div><img className={"img"} src= {"../../../Images/darkMovieBG.jpg"} alt={"demo"}/></div>               
-
-        </OwlCarousel>
+     <Carousel>
+         <img src={"../../../Images/demo.png"} alt="Demo" />
+     </Carousel>
     </div>
 )
 
-export default Carousel;
+export default MovieCarousel;
