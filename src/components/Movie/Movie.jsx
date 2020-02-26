@@ -1,6 +1,7 @@
     import React from 'react';
     import './Movie.module.css';
-    import Carouel from '../UI/Carousel/Carousel'
+    import Carouel from '../UI/Carousel/Carousel';
+    import NewContent from '../NewContent/NewContent';
 
     const Movie = () => (
             <div className={"container"}>
