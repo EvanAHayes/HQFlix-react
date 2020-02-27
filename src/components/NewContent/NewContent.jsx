@@ -2,7 +2,24 @@ import React, { Component } from 'react';
 import classes from './NewContent.module.css';
 
 class NewContent extends Component {
+    state = {}
+
     render(){
+
+        let NewInTheaters = <div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+        <div class="theater row">
+            </div>
+            </div>;
+
+        let PopularMovies = <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+		<div class="popMovie row">
+            </div>
+        </div>;
+
+        let PopularTvShow = <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
+            <div class="popTVshow row">
+            </div>
+        </div>
    return(
     
   <div className={classes.Headcontent}>
@@ -24,6 +41,11 @@ class NewContent extends Component {
     </div>
 </div>
  </div>
+     <div class="tab-content" id="myTabContent">
+            {NewInTheaters}
+            {PopularMovies}
+             {PopularTvShow}
+     </div>
 
   </div>
    );
