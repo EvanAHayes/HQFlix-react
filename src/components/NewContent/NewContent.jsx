@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import classes from './NewContent.module.css';
 
 class NewContent extends Component {
-    state = {}
+    state = {
+        MovueData: []
+    }
 
     componentDidMount(){
-        
+
     }
 
     render(){
