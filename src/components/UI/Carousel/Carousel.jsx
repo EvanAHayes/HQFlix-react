@@ -4,14 +4,20 @@ import '@brainhubeu/react-carousel/lib/style.css';
 import CarouselDisplay from './CarouselDisplay'
 
 
-const MovieCarousel = () => (
+const MovieCarousel = (props) => (
     <div>
     <Carousel
              slidesPerScroll={2}
              slidesPerPage={2}
              infinite
              arrows>
-                 <CarouselDisplay />
+            
+                 <CarouselDisplay
+                 image={props.image} 
+                 title={props.title}
+                 releaseDate={props.releaseDate}
+                 voteAverage={props.voteAverage}/>
+                
     </Carousel>
    </div>
 

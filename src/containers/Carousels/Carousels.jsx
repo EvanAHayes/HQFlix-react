@@ -11,13 +11,15 @@ class Carousels extends Component {
     componentDidMount(){
         axios.get(`movie/upcoming?api_key=${keys}&language=en-US&page=1&region=US`)
         .then(Response => {
-            console.log(Response.data);
-            const results = Response.data.results;
-            const updatedMovieData = results.map(movieData => {
+            console.log(Response.data.results);
+            const MovieData = Response.data.results;
+            const updatedMovieData = MovieData.map(movieData => {
                 return {...movieData}
-            })
+            });
+
             this.setState({MovieData: updatedMovieData})
-        }).catch(error => {
+        })
+        .catch(error => {
             console.log(error);
         })
        }
