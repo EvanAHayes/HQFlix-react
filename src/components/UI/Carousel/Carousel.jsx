@@ -11,6 +11,7 @@ class MovieCarousel extends Component {
     state = {
         MovieData: []
     }
+//movie/upcoming?api_key=${key}&language=en-US&page=1&region=US
 
     render(){
         return (
