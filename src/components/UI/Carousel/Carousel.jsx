@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 import Demo from '../../../Images/demo.png';
@@ -6,7 +6,14 @@ import Cloud from '../../../Images/cloud.jpg';
 import Logo from '../../../Images/logo.png';
 
 
-const MovieCarousel = (props) => (
+class MovieCarousel extends Component {
+
+    state = {
+        MovieData: []
+    }
+
+    render(){
+        return (
     <div>
      <Carousel
               slidesPerScroll={2}
@@ -32,6 +39,8 @@ const MovieCarousel = (props) => (
              <img src={Demo} alt="Demo" />
      </Carousel>
     </div>
-)
+        )
+    }
+}
 
 export default MovieCarousel;

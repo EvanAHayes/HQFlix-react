@@ -4,6 +4,10 @@ import classes from './NewContent.module.css';
 class NewContent extends Component {
     state = {}
 
+    componentDidMount(){
+        
+    }
+
     render(){
 
         let NewInTheaters = <div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
