@@ -4,14 +4,23 @@ import '@brainhubeu/react-carousel/lib/style.css';
 import Demo from '../../../Images/demo.png';
 import Cloud from '../../../Images/cloud.jpg';
 import Logo from '../../../Images/logo.png';
+import axios from '../../../axiosInstances/Axios';
+import {key} from '../../../axiosInstances/config';
 
 
 class MovieCarousel extends Component {
 
     state = {
-        MovieData: []
+        MovieData: null
     }
 //movie/upcoming?api_key=${key}&language=en-US&page=1&region=US
+
+componentDidMount(){
+ axios.get(`movie/upcoming?api_key=${key}&language=en-US&page=1&region=US`)
+ .then(Response => {
+     console.log(Response);
+ })
+}
 
     render(){
         return (
