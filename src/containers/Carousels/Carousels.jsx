@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../axiosInstances/Axios';
 import {keys} from '../../axiosInstances/config';
-import Carousel from '../../components/UI/Carousel/Carousel'
+import Carousel from '../../components/UI/Carousel/CarouselDisplay'
 
 class Carousels extends Component {
     state = {
@@ -25,17 +25,21 @@ class Carousels extends Component {
        }
 
     render(){
-        let MovieResults = this.state.MovieData.map(MovieResults => {
+        let MovieResults = <p>Something went wrong!!</p>
+        if(!this.state.error){
+
+         MovieResults = this.state.MovieData.map(MovieResults => {
             return (<Carousel key={MovieResults.id}
                              image={MovieResults.poster_path}
                              title={MovieResults.title}
                              releaseDate={MovieResults.release_date}
-                             voteAverage={MovieResults.vote_average}/>
+                             voteAverage={MovieResults.vote_average} />
             )
 
         });
+    }
         return (
-        <div>{MovieResults}</div>
+        {MovieResults}
         )
     }
 }

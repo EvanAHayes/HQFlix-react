@@ -12,11 +12,7 @@ const MovieCarousel = (props) => (
              infinite
              arrows>
             
-                 <CarouselDisplay
-                 image={props.image} 
-                 title={props.title}
-                 releaseDate={props.releaseDate}
-                 voteAverage={props.voteAverage}/>
+                 <CarouselDisplay />
                 
     </Carousel>
    </div>
