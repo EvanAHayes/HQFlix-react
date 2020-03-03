@@ -2,7 +2,7 @@ import React from 'react';
 
 const CarouselDisplay = (props) => (
     <div className={"Card-cover"}>
-    <img src={props.image} alt="Demo" />
+    <img src={`https://image.tmdb.org/t/p/w185/${props.image}`}alt="Demo" />
     <div className={"Card-content"}>
          <h6>{props.title}</h6>
          <span>Release Date: {props.releaseDate}</span><br />

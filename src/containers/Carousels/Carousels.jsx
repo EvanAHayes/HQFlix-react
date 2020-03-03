@@ -42,8 +42,8 @@ class Carousels extends Component {
     }
         return (
             <Carousel
-            slidesPerScroll={1}
-            slidesPerPage={1}
+            slidesPerScroll={2}
+            slidesPerPage={2}
             infinite
             arrows>
         {MovieResults}
