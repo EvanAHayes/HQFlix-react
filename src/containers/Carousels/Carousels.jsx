@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../axiosInstances/Axios';
 import {keys} from '../../axiosInstances/config';
-import CarouselData from '../../components/UI/Carousel/CarouselDisplay';
+import CarouselData from '../../components/Carousel/CarouselDisplay';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
 
