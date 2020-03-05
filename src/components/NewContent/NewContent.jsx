@@ -3,7 +3,9 @@ import classes from './NewContent.module.css';
 
 class NewContent extends Component {
     state = {
-        MovueData: []
+        NewInTheatersData: [],
+        PopularMoviesData: [],
+        PopularTvShowData: []
     }
 
     componentDidMount(){
@@ -26,6 +28,7 @@ class NewContent extends Component {
             <div className="popTVshow row">
             </div>
         </div>
+
    return(
     
   <div className={classes.Headcontent}>
