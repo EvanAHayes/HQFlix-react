@@ -42,10 +42,12 @@ class Carousels extends Component {
     }
         return (
             <Carousel
-            slidesPerScroll={2}
-            slidesPerPage={2}
-            infinite
-            arrows>
+            slidesPerScroll={3}
+            slidesPerPage={3}
+            arrows
+            autoPlay={5000}
+            animationSpeed={1000}
+            infinite>
         {MovieResults}
         </Carousel>
         )

@@ -1,4 +1,5 @@
 import React from 'react';
+import './CarouselDisplay.module.css';
 
 const CarouselDisplay = (props) => (
     <div className={"Card-cover"}>

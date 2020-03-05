@@ -7,7 +7,7 @@ class NewContent extends Component {
     }
 
     componentDidMount(){
-
+       
     }
 
     render(){
