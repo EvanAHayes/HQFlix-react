@@ -1,15 +1,48 @@
 import React, { Component } from 'react';
 import classes from './NewContent.module.css';
+import axios from '../../axiosInstances/Axios';
+import {keys} from '../../axiosInstances/config';
+import axiosP from 'axios';
+
+const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
+const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
+const PopularTvShowURL = `tv/popular?api_key=d06c5f6a36c2068ee073ea48b52a4e65&language=en-US`;
+const GenreURL = `genre/movie/list?api_key=${keys}&language=en-US`;
+
 
 class NewContent extends Component {
     state = {
         NewInTheatersData: [],
         PopularMoviesData: [],
-        PopularTvShowData: []
+        PopularTvShowData: [],
+        GenreData: []
     }
 
     componentDidMount(){
-       
+        axiosP.all([
+            axios.get(NewInTheatersURL),
+            axios.get(PopularMoviesURL),
+            axios.get(PopularTvShowURL),
+            axios.get(GenreURL)
+        ])
+        .then(axiosP.spread((...responses) => {
+           const NewInTheatersData = responses[0].data;
+           const PopularMoviesData = responses[1].data;
+           const PopularTvShowData = responses[2].data;
+           const GenreData = responses[3].data;
+
+           //NewInTheaters
+           const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
+               return{...newInTheatersData}
+           });
+           
+
+           console.log(NewInTheatersData, PopularMoviesData, PopularTvShowData, GenreData);
+        })  
+        ).catch(error => {
+            console.log(error);
+        })
+        
     }
 
     render(){
