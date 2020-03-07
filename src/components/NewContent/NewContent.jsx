@@ -35,7 +35,7 @@ class NewContent extends Component {
            const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
                return{...newInTheatersData}
            });
-           
+
 
            console.log(NewInTheatersData, PopularMoviesData, PopularTvShowData, GenreData);
         })  
@@ -46,19 +46,26 @@ class NewContent extends Component {
     }
 
     render(){
+        let newInTheatersResults = <p>Something went wrong!!!</p>;
+        let PopularMoviesResults = <p>Something went wrong!!!</p>;
+        let PopularTvShowResults = <p>Something went wrong!!!</p>;
 
-        let NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+
+        const NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
         <div className="theater row">
+               {newInTheatersResults}
             </div>
             </div>;
 
-        let PopularMovies = <div className="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+        const PopularMovies = <div className="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
 		<div className="popMovie row">
+            {PopularMoviesResults}
             </div>
         </div>;
 
-        let PopularTvShow = <div className="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
+        const PopularTvShow = <div className="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
             <div className="popTVshow row">
+                {PopularTvShowResults}
             </div>
         </div>
 
