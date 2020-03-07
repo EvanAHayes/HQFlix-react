@@ -3,6 +3,7 @@ import classes from './NewContent.module.css';
 import axios from '../../axiosInstances/Axios';
 import {keys} from '../../axiosInstances/config';
 import axiosP from 'axios';
+import NewInTheatersDisplay from '../../components/NewContent/NewInTheaters/NewInTheatersDisplay';
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
 const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
@@ -26,7 +27,7 @@ class NewContent extends Component {
             axios.get(GenreURL)
         ])
         .then(axiosP.spread((...responses) => {
-           const NewInTheatersData = responses[0].data;
+           const NewInTheatersData = responses[0].data.results;
            const PopularMoviesData = responses[1].data;
            const PopularTvShowData = responses[2].data;
            const GenreData = responses[3].data;
@@ -35,6 +36,7 @@ class NewContent extends Component {
            const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
                return{...newInTheatersData}
            });
+           this.setState({NewInTheatersData: UpdatedNewInTheatersData});
 
 
            console.log(NewInTheatersData, PopularMoviesData, PopularTvShowData, GenreData);
@@ -49,6 +51,21 @@ class NewContent extends Component {
         let newInTheatersResults = <p>Something went wrong!!!</p>;
         let PopularMoviesResults = <p>Something went wrong!!!</p>;
         let PopularTvShowResults = <p>Something went wrong!!!</p>;
+
+        if(!this.state.error){
+             
+          newInTheatersResults = this.state.NewInTheatersData.map(newInTheatersResults => {
+            return(
+                <NewInTheatersDisplay key={newInTheatersResults.id}
+                                       image={newInTheatersResults.poster_path}
+                                       title={newInTheatersResults.title}
+                                       id={newInTheatersResults.id}
+                                       genre_id={newInTheatersResults.genre_id}
+                                       vote_average={newInTheatersResults.vote_average}
+                                       overview={newInTheatersResults.overview}/>
+                      )
+                })
+        }
 
 
         const NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
@@ -70,7 +87,7 @@ class NewContent extends Component {
         </div>
 
    return(
-    
+    <section className={classes.Content}>
   <div className={classes.Headcontent}>
  <div className="container">
 <div className="row">
@@ -97,6 +114,7 @@ class NewContent extends Component {
      </div>
 
   </div>
+  </section>
    );
     }
 };
