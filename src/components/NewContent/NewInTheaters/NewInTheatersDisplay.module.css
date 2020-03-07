@@ -6,3 +6,9 @@ img {
     vertical-align: middle;
     border-style: none;
 }
+.cardList {
+    margin-bottom: 25px;
+}
+a {
+    transition: 0.8s ease;
+}

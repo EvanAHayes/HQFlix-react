@@ -107,12 +107,13 @@ class NewContent extends Component {
     </div>
 </div>
  </div>
+ <div class="container">
      <div className="tab-content" id="myTabContent">
             {NewInTheaters}
             {PopularMovies}
              {PopularTvShow}
      </div>
-
+     </div>
   </div>
   </section>
    );

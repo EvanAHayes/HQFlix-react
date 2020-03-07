@@ -18,7 +18,7 @@ const limitTitle = (title, limit = 150) => {
 
 const NewInTheaters = (props) => (
     <div className="col-6 col-sm-12 col-lg-6">
-    <div className={`${styles.card} card--list`}>
+    <div className={`${styles.card} ${styles.cardList}`}>
             <div className="row">
                 <div className="col-12 col-sm-4">
                     <div className="card__cover">
