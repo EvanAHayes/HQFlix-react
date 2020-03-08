@@ -21,7 +21,7 @@ const NewInTheaters = (props) => (
     <div className={`${styles.card} ${styles.cardList}`}>
             <div className="row">
                 <div className="col-12 col-sm-4">
-                    <div className="card__cover">
+                    <div className={`${styles.card__cover}`}>
                         <img src={`https://image.tmdb.org/t/p/w185/${props.image}`} alt={`${props.title}`} />
                     </div>
                 </div>

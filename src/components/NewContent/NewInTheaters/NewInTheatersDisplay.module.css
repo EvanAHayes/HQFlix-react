@@ -1,10 +1,14 @@
 .card{
     background-color: silver;
    }
+.card__cover {
+    position: relative;
+    box-shadow: none;
+    transition: 0.4s ease;
+}
 
-img {
-    vertical-align: middle;
-    border-style: none;
+   .card__cover img {
+    width: 100%;
 }
 .cardList {
     margin-bottom: 25px;
@@ -12,3 +16,9 @@ img {
 a {
     transition: 0.8s ease;
 }
+
+@media (min-width: 768px){
+    .cardList {
+        margin-bottom: 50px;
+    }
+    }
