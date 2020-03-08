@@ -36,6 +36,7 @@ class NewContent extends Component {
            const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
                return{...newInTheatersData}
            });
+           
            this.setState({NewInTheatersData: UpdatedNewInTheatersData});
 
 
