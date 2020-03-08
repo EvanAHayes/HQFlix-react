@@ -28,12 +28,18 @@ class NewContent extends Component {
         ])
         .then(axiosP.spread((...responses) => {
            const NewInTheatersData = responses[0].data.results;
-           const PopularMoviesData = responses[1].data;
-           const PopularTvShowData = responses[2].data;
-           const GenreData = responses[3].data;
+           const PopularMoviesData = responses[1].data.results;
+           const PopularTvShowData = responses[2].data.results;
+           const GenreData = responses[3].data.genres;
 
            //NewInTheaters
            const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
+               GenreData.map(genreData => {
+                   if(genreData.id === newInTheatersData.genre_id){
+                       return this.setState({GenreData: genreData.name});
+                   }
+                   return genreData.name
+               })
                return{...newInTheatersData}
            });
            
