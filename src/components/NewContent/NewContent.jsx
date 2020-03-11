@@ -16,7 +16,8 @@ class NewContent extends Component {
         NewInTheatersData: [],
         PopularMoviesData: [],
         PopularTvShowData: [],
-        GenreData: []
+        GenreData: [],
+        GenreName: null
     }
 
     componentDidMount(){
@@ -32,18 +33,18 @@ class NewContent extends Component {
            const PopularTvShowData = responses[2].data.results;
            const GenreData = responses[3].data.genres;
 
+           //GETgenre
+           const GetGenre = GenreData.map(genreData => {
+               return{...genreData}
+           })
+
            //NewInTheaters
            const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
-               GenreData.map(genreData => {
-                   if(genreData.id === newInTheatersData.genre_id){
-                       return this.setState({GenreData: genreData.name});
-                   }
-                   return genreData.name
-               })
                return{...newInTheatersData}
            });
            
-           this.setState({NewInTheatersData: UpdatedNewInTheatersData});
+           this.setState({NewInTheatersData: UpdatedNewInTheatersData, 
+                           GenreData: GetGenre});
 
 
            console.log(NewInTheatersData, PopularMoviesData, PopularTvShowData, GenreData);
@@ -54,22 +55,47 @@ class NewContent extends Component {
         
     }
 
+//     GetGenreName (id) {
+//         if(id){
+//             id.forEach(element => {
+//                 this.state.GenreData.forEach(genreids => {
+//                if(element.genre_ids === genreids.id){
+//                   console.log(genreids.name)
+//                    return genreids.name
+//                }
+//            }
+//            )
+//           });
+//         }
+        
+//    }
+
     render(){
         let newInTheatersResults = <p>Something went wrong!!!</p>;
         let PopularMoviesResults = <p>Something went wrong!!!</p>;
         let PopularTvShowResults = <p>Something went wrong!!!</p>;
 
+        const ids = (id) => {
+            this.state.GenreData.forEach(genreids => {
+                 id.forEach(element => {
+                 if(element === genreids.id){
+                     console.log(genreids.name)
+                     return <NewInTheatersDisplay genre_ids={genreids.name} />
+                 }
+             })
+             return <NewInTheatersDisplay genre_ids={genreids.name} />
+         })
+     }
         if(!this.state.error){
-             
           newInTheatersResults = this.state.NewInTheatersData.map(newInTheatersResults => {
             return(
-                <NewInTheatersDisplay key={newInTheatersResults.id}
-                                       image={newInTheatersResults.poster_path}
-                                       title={newInTheatersResults.title}
-                                       id={newInTheatersResults.id}
-                                       genre_id={newInTheatersResults.genre_id}
-                                       vote_average={newInTheatersResults.vote_average}
-                                       overview={newInTheatersResults.overview}/>
+               <NewInTheatersDisplay key={newInTheatersResults.id}
+                        image={newInTheatersResults.poster_path}
+                        title={newInTheatersResults.title}
+                        id={newInTheatersResults.id}
+                        genre_ids={ids(newInTheatersResults.genre_ids)}
+                        vote_average={newInTheatersResults.vote_average}
+                        overview={newInTheatersResults.overview}/>
                       )
                 })
         }
