@@ -36,23 +36,25 @@ class NewContent extends Component {
            //GETgenre
            const GetGenre = GenreData.map(genreData => {
                return{...genreData}
-           })
+           });
 
            //NewInTheaters
            const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
                return{...newInTheatersData}
            });
-
+          //PopularMovie
            const UpdatedPopularMovieData = PopularMoviesData.map(popularMoviesData => {
                return{...popularMoviesData}
-           })
+           });
+              //PopularTvShow
+           const UpdatedPopularTvShowData = PopularTvShowData.map(popularTvShowData => {
+               return{...popularTvShowData}
+           });
            
            this.setState({NewInTheatersData: UpdatedNewInTheatersData, 
-                           GenreData: GetGenre,
-                        PopularMoviesData: UpdatedPopularMovieData});
-
-
-           console.log(NewInTheatersData, PopularMoviesData, PopularTvShowData, GenreData);
+                          GenreData: GetGenre,
+                          PopularMoviesData: UpdatedPopularMovieData,
+                          PopularTvShowData: UpdatedPopularTvShowData});
         })  
         ).catch(error => {
             console.log(error);
@@ -99,6 +101,18 @@ class NewContent extends Component {
                         genre_ids={ids(PopularMoviesResults.genre_ids)}
                         vote_average={PopularMoviesResults.vote_average}
                         overview={PopularMoviesResults.overview}/>
+            )
+        })
+
+        PopularTvShowResults = this.state.PopularTvShowData.map(PopularTvShowData => {
+            return (
+                <Display key={PopularTvShowData.id}
+                        image={PopularTvShowData.poster_path}
+                        title={PopularTvShowData.name}
+                        id={PopularTvShowData.id}
+                        genre_ids={ids(PopularTvShowData.genre_ids)}
+                        vote_average={PopularTvShowData.vote_average}
+                        overview={PopularTvShowData.overview}/>
             )
         })
 
