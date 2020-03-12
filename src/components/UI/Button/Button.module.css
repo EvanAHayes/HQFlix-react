@@ -1,0 +1,21 @@
+button{
+display: flex;
+justify-content: center;
+align-items: center;
+height: 50px;
+width: 160px;
+background-image: linear-gradient(90deg, #08c1fa 0%, #08c1fa 100%);
+box-shadow: 0 0 20px 0 rgba(179,220,237,1);;
+opacity: 0.85;
+color: #fff;
+font-weight: 500;
+letter-spacing: 1px;
+position: relative;
+}
+
+.button{
+    margin: 10px auto 15px;
+    font-size: 15px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}

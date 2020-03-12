@@ -3,7 +3,8 @@ import classes from './NewContent.module.css';
 import axios from '../../axiosInstances/Axios';
 import {keys} from '../../axiosInstances/config';
 import axiosP from 'axios';
-import NewInTheatersDisplay from '../../components/NewContent/NewInTheaters/NewInTheatersDisplay';
+import Display from '../../components/NewContent/NewInTheaters/NewInTheatersDisplay';
+import Button from "../UI/Button/Button";
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
 const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
@@ -16,8 +17,7 @@ class NewContent extends Component {
         NewInTheatersData: [],
         PopularMoviesData: [],
         PopularTvShowData: [],
-        GenreData: [],
-        GenreName: null
+        GenreData: []
     }
 
     componentDidMount(){
@@ -42,9 +42,14 @@ class NewContent extends Component {
            const UpdatedNewInTheatersData = NewInTheatersData.map(newInTheatersData => {
                return{...newInTheatersData}
            });
+
+           const UpdatedPopularMovieData = PopularMoviesData.map(popularMoviesData => {
+               return{...popularMoviesData}
+           })
            
            this.setState({NewInTheatersData: UpdatedNewInTheatersData, 
-                           GenreData: GetGenre});
+                           GenreData: GetGenre,
+                        PopularMoviesData: UpdatedPopularMovieData});
 
 
            console.log(NewInTheatersData, PopularMoviesData, PopularTvShowData, GenreData);
@@ -69,14 +74,13 @@ class NewContent extends Component {
                  }
              })
          })
-        
         return el.join(', ')
      }
 
         if(!this.state.error){
           newInTheatersResults = this.state.NewInTheatersData.map(newInTheatersResults => {
             return(
-               <NewInTheatersDisplay key={newInTheatersResults.id}
+               <Display key={newInTheatersResults.id}
                         image={newInTheatersResults.poster_path}
                         title={newInTheatersResults.title}
                         id={newInTheatersResults.id}
@@ -84,7 +88,20 @@ class NewContent extends Component {
                         vote_average={newInTheatersResults.vote_average}
                         overview={newInTheatersResults.overview}/>
                       )
-                })
+                });
+
+        PopularMoviesResults = this.state.PopularMoviesData.map(PopularMoviesResults => {
+            return (
+                <Display key={PopularMoviesResults.id}
+                        image={PopularMoviesResults.poster_path}
+                        title={PopularMoviesResults.title}
+                        id={PopularMoviesResults.id}
+                        genre_ids={ids(PopularMoviesResults.genre_ids)}
+                        vote_average={PopularMoviesResults.vote_average}
+                        overview={PopularMoviesResults.overview}/>
+            )
+        })
+
         }
 
 
@@ -133,6 +150,7 @@ class NewContent extends Component {
             {PopularMovies}
              {PopularTvShow}
      </div>
+     <Button> Show More </Button>
      </div>
   </div>
   </section>

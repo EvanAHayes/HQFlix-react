@@ -4,12 +4,13 @@
     import NewContent from '../NewContent/NewContent';
 
     const Movie = () => (
+        
             <div>
                 <main className={"container"}>
                 <h1 className={'text-center mt-5 pt-5'}>New Movies Coming Soon To Theather</h1>
                 <Carouel />
-                </main>
-                <NewContent />
+                </main>  
+                <NewContent />    
             </div>
     )
     
