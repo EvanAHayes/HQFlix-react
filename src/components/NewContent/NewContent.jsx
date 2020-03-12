@@ -55,37 +55,24 @@ class NewContent extends Component {
         
     }
 
-//     GetGenreName (id) {
-//         if(id){
-//             id.forEach(element => {
-//                 this.state.GenreData.forEach(genreids => {
-//                if(element.genre_ids === genreids.id){
-//                   console.log(genreids.name)
-//                    return genreids.name
-//                }
-//            }
-//            )
-//           });
-//         }
-        
-//    }
-
     render(){
         let newInTheatersResults = <p>Something went wrong!!!</p>;
         let PopularMoviesResults = <p>Something went wrong!!!</p>;
         let PopularTvShowResults = <p>Something went wrong!!!</p>;
 
         const ids = (id) => {
+            let el = []
             this.state.GenreData.forEach(genreids => {
                  id.forEach(element => {
                  if(element === genreids.id){
-                     console.log(genreids.name)
-                     return <NewInTheatersDisplay genre_ids={genreids.name} />
+                    el.push(genreids.name)
                  }
              })
-             return <NewInTheatersDisplay genre_ids={genreids.name} />
          })
+        
+        return el.join(', ')
      }
+
         if(!this.state.error){
           newInTheatersResults = this.state.NewInTheatersData.map(newInTheatersResults => {
             return(
