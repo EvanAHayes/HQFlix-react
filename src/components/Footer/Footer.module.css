@@ -1,0 +1,27 @@
+.footer {
+    background-color: #28282d;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0 30px;
+    -webkit-box-shadow: 0 5px 25px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 5px 25px 0 rgba(0,0,0,0.3);
+    color: white;
+}
+
+.footer__copyright {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 15px;
+    border-top: 1px solid lightblue;
+    padding-top: 30px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+@media (min-width: 768px){
+.footer {
+    padding: 60px 0 30px;
+}
+}

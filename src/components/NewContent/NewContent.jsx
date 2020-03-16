@@ -6,6 +6,8 @@ import axiosP from 'axios';
 import Display from '../../components/NewContent/NewInTheaters/NewInTheatersDisplay';
 import Button from "../UI/Button/Button";
 
+
+
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
 const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
 const PopularTvShowURL = `tv/popular?api_key=d06c5f6a36c2068ee073ea48b52a4e65&language=en-US`;
@@ -17,7 +19,9 @@ class NewContent extends Component {
         NewInTheatersData: [],
         PopularMoviesData: [],
         PopularTvShowData: [],
-        GenreData: []
+        GenreData: [],
+        loading: false
+        
     }
 
     componentDidMount(){
@@ -81,6 +85,7 @@ class NewContent extends Component {
 
         if(!this.state.error){
           newInTheatersResults = this.state.NewInTheatersData.map(newInTheatersResults => {
+              
             return(
                <Display key={newInTheatersResults.id}
                         image={newInTheatersResults.poster_path}
@@ -106,6 +111,7 @@ class NewContent extends Component {
 
         PopularTvShowResults = this.state.PopularTvShowData.map(PopularTvShowData => {
             return (
+               
                 <Display key={PopularTvShowData.id}
                         image={PopularTvShowData.poster_path}
                         title={PopularTvShowData.name}
@@ -113,6 +119,7 @@ class NewContent extends Component {
                         genre_ids={ids(PopularTvShowData.genre_ids)}
                         vote_average={PopularTvShowData.vote_average}
                         overview={PopularTvShowData.overview}/>
+                        
             )
         })
 
