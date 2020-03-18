@@ -5,7 +5,7 @@ import {keys} from '../../axiosInstances/config';
 import axiosP from 'axios';
 import Display from '../../components/NewContent/NewInTheaters/NewInTheatersDisplay';
 import Button from "../UI/Button/Button";
-
+import Spinner from '../UI/Spinner/Spinner';
 
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
@@ -13,15 +13,15 @@ const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
 const PopularTvShowURL = `tv/popular?api_key=d06c5f6a36c2068ee073ea48b52a4e65&language=en-US`;
 const GenreURL = `genre/movie/list?api_key=${keys}&language=en-US`;
 
-
 class NewContent extends Component {
     state = {
         NewInTheatersData: [],
         PopularMoviesData: [],
         PopularTvShowData: [],
         GenreData: [],
-        loading: false
-        
+        loading: false,
+        showItems: 4,
+    
     }
 
     componentDidMount(){
@@ -62,15 +62,51 @@ class NewContent extends Component {
         })  
         ).catch(error => {
             console.log(error);
+        }) 
+    }
+
+    ShowSpinner(){
+        this.setState({loading: true});
+    }
+
+    RemoveSpinner(){
+        this.setState({loading: false})
+    }
+
+    GetData(){
+        this.setState((prev) => {
+            return {showItems: prev.showItems + 2}
         })
-        
+    }
+
+    loadDataInTheaters = () => {
+        this.ShowSpinner();
+        this.GetData();
+        this.RemoveSpinner();
+    }
+    loadDataPopMovie = () => {
+        this.ShowSpinner();
+        this.GetData();
+        this.RemoveSpinner();
+    }
+
+    loadDataPopTV = () => {
+        this.ShowSpinner();
+        this.GetData();
+        this.RemoveSpinner();
     }
 
     render(){
+
         let newInTheatersResults = <p>Something went wrong!!!</p>;
         let PopularMoviesResults = <p>Something went wrong!!!</p>;
         let PopularTvShowResults = <p>Something went wrong!!!</p>;
-
+        let ShowMorenewInTheatersResults = null;
+        let ShowMorePopularMoviesResults = null;
+        let ShowMorePopularTvShowResults = null;
+        let ShowMorenewInTheatersResultsButton = <Button clicked={() => this.loadDataInTheaters()}> Show More </Button>;
+        let ShowMorePopularMoviesResultsButton = <Button  clicked={() => this.loadDataPopMovie()}> Show More </Button>;
+        let ShowMorePopularTvShowResultsButton = <Button  clicked={() => this.loadDataPopMovie()}> Show More </Button>;
         const ids = (id) => {
             let el = []
             this.state.GenreData.forEach(genreids => {
@@ -83,9 +119,15 @@ class NewContent extends Component {
         return el.join(', ')
      }
 
-        if(!this.state.error){
-          newInTheatersResults = this.state.NewInTheatersData.map(newInTheatersResults => {
-              
+     if(this.state.loading){
+        ShowMorenewInTheatersResultsButton = <Spinner />
+        ShowMorePopularMoviesResultsButton = <Spinner />
+        ShowMorePopularTvShowResultsButton = <Spinner />
+     }
+     
+
+    if(!this.state.error){
+          newInTheatersResults = this.state.NewInTheatersData.slice(0,this.state.showItems).map(newInTheatersResults => {        
             return(
                <Display key={newInTheatersResults.id}
                         image={newInTheatersResults.poster_path}
@@ -97,7 +139,7 @@ class NewContent extends Component {
                       )
                 });
 
-        PopularMoviesResults = this.state.PopularMoviesData.map(PopularMoviesResults => {
+        PopularMoviesResults = this.state.PopularMoviesData.slice(0,this.state.showItems).map(PopularMoviesResults => {
             return (
                 <Display key={PopularMoviesResults.id}
                         image={PopularMoviesResults.poster_path}
@@ -109,7 +151,7 @@ class NewContent extends Component {
             )
         })
 
-        PopularTvShowResults = this.state.PopularTvShowData.map(PopularTvShowData => {
+        PopularTvShowResults = this.state.PopularTvShowData.slice(0,this.state.showItems).map(PopularTvShowData => {
             return (
                
                 <Display key={PopularTvShowData.id}
@@ -122,25 +164,29 @@ class NewContent extends Component {
                         
             )
         })
-
         }
-
 
         const NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
         <div className="theater row">
                {newInTheatersResults}
+               {ShowMorenewInTheatersResults}
+               {this.state.showItems < this.state.NewInTheatersData.length && ShowMorenewInTheatersResultsButton }
             </div>
             </div>;
 
         const PopularMovies = <div className="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
 		<div className="popMovie row">
             {PopularMoviesResults}
+            {ShowMorePopularMoviesResults}
+            {this.state.showItems < this.state.PopularMoviesData.length && ShowMorePopularMoviesResultsButton}
             </div>
         </div>;
 
         const PopularTvShow = <div className="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
             <div className="popTVshow row">
                 {PopularTvShowResults}
+                {ShowMorePopularTvShowResults}
+                {this.state.showItems < this.state.PopularTvShowData.length && ShowMorePopularTvShowResultsButton}
             </div>
         </div>
 
@@ -171,7 +217,6 @@ class NewContent extends Component {
             {PopularMovies}
              {PopularTvShow}
      </div>
-     <Button> Show More </Button>
      </div>
   </div>
   </section>
