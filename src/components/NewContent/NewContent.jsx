@@ -6,6 +6,9 @@ import axiosP from 'axios';
 import Display from '../../components/NewContent/NewInTheaters/NewInTheatersDisplay';
 import Button from "../UI/Button/Button";
 import Spinner from '../UI/Spinner/Spinner';
+import Aux from '../../hoc/Aux';
+import Modal from '../UI/Modal/Modal';
+import ModalSummary from '../Movie/MovieSummary/MovieSummary';
 
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
@@ -21,6 +24,8 @@ class NewContent extends Component {
         GenreData: [],
         loading: false,
         showItems: 4,
+        showModal: false,
+        selectedID: null
     
     }
 
@@ -96,6 +101,14 @@ class NewContent extends Component {
         this.RemoveSpinner();
     }
 
+    OpenModalHandler = (id) => {
+        this.setState({showModal: true, selectedID: id})
+    }
+
+    CloseModalHandler = () => {
+        this.setState({showModal: false})
+    }
+
     render(){
 
         let newInTheatersResults = <p>Something went wrong!!!</p>;
@@ -107,6 +120,9 @@ class NewContent extends Component {
         let ShowMorenewInTheatersResultsButton = <Button clicked={() => this.loadDataInTheaters()}> Show More </Button>;
         let ShowMorePopularMoviesResultsButton = <Button  clicked={() => this.loadDataPopMovie()}> Show More </Button>;
         let ShowMorePopularTvShowResultsButton = <Button  clicked={() => this.loadDataPopMovie()}> Show More </Button>;
+        let ShowSummary = null
+
+
         const ids = (id) => {
             let el = []
             this.state.GenreData.forEach(genreids => {
@@ -132,6 +148,7 @@ class NewContent extends Component {
                <Display key={newInTheatersResults.id}
                         image={newInTheatersResults.poster_path}
                         title={newInTheatersResults.title}
+                        show={() => this.OpenModalHandler(newInTheatersResults.id)}
                         id={newInTheatersResults.id}
                         genre_ids={ids(newInTheatersResults.genre_ids)}
                         vote_average={newInTheatersResults.vote_average}
@@ -144,6 +161,7 @@ class NewContent extends Component {
                 <Display key={PopularMoviesResults.id}
                         image={PopularMoviesResults.poster_path}
                         title={PopularMoviesResults.title}
+                        show={this.OpenModalHandler}
                         id={PopularMoviesResults.id}
                         genre_ids={ids(PopularMoviesResults.genre_ids)}
                         vote_average={PopularMoviesResults.vote_average}
@@ -157,13 +175,19 @@ class NewContent extends Component {
                 <Display key={PopularTvShowData.id}
                         image={PopularTvShowData.poster_path}
                         title={PopularTvShowData.name}
+                        show={this.OpenModalHandler}
                         id={PopularTvShowData.id}
                         genre_ids={ids(PopularTvShowData.genre_ids)}
                         vote_average={PopularTvShowData.vote_average}
                         overview={PopularTvShowData.overview}/>
-                        
             )
         })
+        }
+        if(this.state.PopularMoviesData){
+            ShowSummary = 
+               <ModalSummary 
+               id={this.state.selectedID}
+               MovieSummary={this.state.NewInTheatersData} />
         }
 
         const NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
@@ -191,6 +215,11 @@ class NewContent extends Component {
         </div>
 
    return(
+       <Aux>
+           <Modal>
+           <ModalSummary 
+               id={this.state.selectedID} />
+           </Modal>
     <section className={classes.Content}>
   <div className={classes.Headcontent}>
  <div className="container">
@@ -220,6 +249,7 @@ class NewContent extends Component {
      </div>
   </div>
   </section>
+  </Aux>
    );
     }
 };
