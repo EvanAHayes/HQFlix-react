@@ -16,7 +16,9 @@
 a {
     transition: 0.8s ease;
 }
-
+h3{
+    color: #007bff;
+}
 @media (min-width: 768px){
     .cardList {
         margin-bottom: 50px;

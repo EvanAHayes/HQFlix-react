@@ -120,7 +120,7 @@ class NewContent extends Component {
         let ShowMorenewInTheatersResultsButton = <Button clicked={() => this.loadDataInTheaters()}> Show More </Button>;
         let ShowMorePopularMoviesResultsButton = <Button  clicked={() => this.loadDataPopMovie()}> Show More </Button>;
         let ShowMorePopularTvShowResultsButton = <Button  clicked={() => this.loadDataPopMovie()}> Show More </Button>;
-        let ShowSummary = null
+       
 
 
         const ids = (id) => {
@@ -182,12 +182,6 @@ class NewContent extends Component {
                         overview={PopularTvShowData.overview}/>
             )
         })
-        }
-        if(this.state.PopularMoviesData){
-            ShowSummary = 
-               <ModalSummary 
-               id={this.state.selectedID}
-               MovieSummary={this.state.NewInTheatersData} />
         }
 
         const NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
