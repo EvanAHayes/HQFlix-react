@@ -161,7 +161,7 @@ class NewContent extends Component {
                 <Display key={PopularMoviesResults.id}
                         image={PopularMoviesResults.poster_path}
                         title={PopularMoviesResults.title}
-                        show={this.OpenModalHandler}
+                        show={() => this.OpenModalHandler(PopularMoviesResults.id)}
                         id={PopularMoviesResults.id}
                         genre_ids={ids(PopularMoviesResults.genre_ids)}
                         vote_average={PopularMoviesResults.vote_average}
@@ -175,7 +175,7 @@ class NewContent extends Component {
                 <Display key={PopularTvShowData.id}
                         image={PopularTvShowData.poster_path}
                         title={PopularTvShowData.name}
-                        show={this.OpenModalHandler}
+                        show={() => this.OpenModalHandler(PopularTvShowData.id)}
                         id={PopularTvShowData.id}
                         genre_ids={ids(PopularTvShowData.genre_ids)}
                         vote_average={PopularTvShowData.vote_average}
@@ -210,9 +210,10 @@ class NewContent extends Component {
 
    return(
        <Aux>
-           <Modal>
+           <Modal show={this.state.showModal} closed={this.CloseModalHandler}>
            <ModalSummary 
-               id={this.state.selectedID} />
+               id={this.state.selectedID}
+               clicked={this.CloseModalHandler} />
            </Modal>
     <section className={classes.Content}>
   <div className={classes.Headcontent}>
