@@ -4,6 +4,8 @@ import {keys} from '../../axiosInstances/config';
 import CarouselData from '../../components/Carousel/CarouselDisplay';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
+import Spinner from '../../components/UI/Spinner/Spinner';
+
 
 class Carousels extends Component {
     state = {
@@ -26,7 +28,8 @@ class Carousels extends Component {
        }
 
     render(){
-        let MovieResults = <p>Something went wrong</p> 
+        let MovieResults = <Spinner />
+
         if(!this.state.error){
 
          MovieResults = this.state.MovieData.map(MovieResults => {

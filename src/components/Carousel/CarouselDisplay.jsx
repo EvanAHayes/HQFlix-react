@@ -1,9 +1,18 @@
 import React from 'react';
 import './CarouselDisplay.module.css';
+import NotFound from '../../Images/coming-soon-image.jpg';
+
+
+const findNull =  (nullRecieved) => {
+     if(nullRecieved === null){
+         return NotFound
+     }
+     return `https://image.tmdb.org/t/p/w185/${nullRecieved}`
+}
 
 const CarouselDisplay = (props) => (
     <div className={"Card-cover"}>
-    <img src={`https://image.tmdb.org/t/p/w185/${props.image}`}alt="Demo" />
+    <img src={findNull(props.image)}alt="Demo" />
     <div className={"Card-content"}>
          <h6>{props.title}</h6>
          <span>Release Date: {props.releaseDate}</span><br />
