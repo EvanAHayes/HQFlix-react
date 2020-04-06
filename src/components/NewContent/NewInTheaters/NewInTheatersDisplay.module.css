@@ -1,5 +1,6 @@
 .card{
     background-color: silver;
+    cursor: pointer;
    }
 .card__cover {
     position: relative;
@@ -13,9 +14,7 @@
 .cardList {
     margin-bottom: 25px;
 }
-a {
-    transition: 0.8s ease;
-}
+
 h3{
     color: #007bff;
 }

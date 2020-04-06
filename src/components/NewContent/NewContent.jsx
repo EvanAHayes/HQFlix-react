@@ -13,7 +13,7 @@ import ModalSummary from '../Movie/MovieSummary/MovieSummary';
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
 const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
-const PopularTvShowURL = `tv/popular?api_key=d06c5f6a36c2068ee073ea48b52a4e65&language=en-US`;
+const PopularTvShowURL = `tv/popular?api_key=${keys}&language=en-US`;
 const GenreURL = `genre/movie/list?api_key=${keys}&language=en-US`;
 
 class NewContent extends Component {

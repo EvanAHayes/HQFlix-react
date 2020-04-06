@@ -7,7 +7,7 @@
     box-shadow: 1px 1px 1px black;
     padding: 16px;
     left: 15%;
-    top: 5%;
+    top: 10%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
     color: #000;
@@ -17,5 +17,12 @@
     .Modal {
         width: 500px;
         left: calc(50% - 300px);
+    }
+}
+@media (max-width: 400px){
+    .Modal {
+        height: 500px;
+        overflow-y: auto;
+        top: 2%;
     }
 }

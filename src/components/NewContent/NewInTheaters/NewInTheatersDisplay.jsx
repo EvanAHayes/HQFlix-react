@@ -17,7 +17,7 @@ const limitTitle = (title, limit = 150) => {
 }
 
 const NewInTheaters = (props) => (
-    <div className="col-6 col-sm-12 col-lg-6 col-xl-2">
+    <div className="col-sm-12 col-lg-6 col-md-12 col-xs-12">
     <div className={`${styles.card} ${styles.cardList}`} onClick={props.show}>
             <div className="row">
                 <div className="col-12 col-sm-4">

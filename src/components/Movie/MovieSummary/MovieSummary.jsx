@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import axios from 'axios';
-import Spinner from '../../UI/Spinner/Spinner'
+import Spinner from '../../UI/Spinner/Spinner';
+import {keys} from '../../../axiosInstances/config';
 
 class MovieSummary extends Component {
 state = {
@@ -10,7 +11,7 @@ state = {
         if(this.props.id){
             if(!this.state.selectedPost || (!this.state.loadedPost && this.state.selectedPost.id !== this.props.id)){
             
-       axios.get(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=d06c5f6a36c2068ee073ea48b52a4e65&language=en-US`)
+       axios.get(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${keys}&language=en-US`)
        .then(Response => {
            this.setState({selectedPost: Response.data})
        })

@@ -47,7 +47,7 @@ class Carousels extends Component {
             slidesPerScroll={3}
             slidesPerPage={3}
             arrows
-            autoPlay={5000}
+            autoPlay={7000}
             animationSpeed={1000}
             infinite>
         {MovieResults}

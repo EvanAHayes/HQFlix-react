@@ -1,5 +1,5 @@
 import React from 'react';
-import './CarouselDisplay.module.css';
+import classes from './CarouselDisplay.module.css';
 import NotFound from '../../Images/coming-soon-image.jpg';
 
 
@@ -13,7 +13,7 @@ const findNull =  (nullRecieved) => {
 const CarouselDisplay = (props) => (
     <div className={"Card-cover"}>
     <img src={findNull(props.image)}alt="Demo" />
-    <div className={"Card-content"}>
+    <div className={`${classes.Cardcontent}`}>
          <h6>{props.title}</h6>
          <span>Release Date: {props.releaseDate}</span><br />
         <span>Rating:{props.voteAverage} <i className="fas fa-star"></i></span>
