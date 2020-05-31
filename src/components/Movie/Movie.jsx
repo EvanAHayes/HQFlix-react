@@ -2,7 +2,6 @@
     import './Movie.module.css';
     import Carouel from '../../containers/Carousels/Carousels';
     import NewContent from '../NewContent/NewContent';
-    import Footer from '../Footer/Footer'
 
     const Movie = () => (
         
@@ -12,7 +11,7 @@
                 <Carouel />
                 </main>  
                 <NewContent />   
-                <Footer /> 
+                 
             </div>
     )
     
