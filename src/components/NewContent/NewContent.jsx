@@ -25,7 +25,7 @@ class NewContent extends Component {
         loading: false,
         showItems: 4,
         showModal: false,
-        selectedID: null
+        MovieID: null
     
     }
 
@@ -102,7 +102,7 @@ class NewContent extends Component {
     }
 
     OpenModalHandler = (id) => {
-        this.setState({showModal: true, selectedID: id})
+        this.setState({showModal: true, MovieID: id})
     }
 
     CloseModalHandler = () => {
@@ -212,7 +212,7 @@ class NewContent extends Component {
        <Aux>
            <Modal show={this.state.showModal} closed={this.CloseModalHandler}>
            <MovieModalSummary 
-               id={this.state.selectedID}
+               id={this.state.MovieID}
                clicked={this.CloseModalHandler} />
            </Modal>
     <section className={classes.Content}>
