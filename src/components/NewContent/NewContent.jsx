@@ -8,7 +8,7 @@ import Button from "../UI/Button/Button";
 import Spinner from '../UI/Spinner/Spinner';
 import Aux from '../../hoc/Aux';
 import Modal from '../UI/Modal/Modal';
-import ModalSummary from '../Movie/MovieSummary/MovieSummary';
+import MovieModalSummary from '../Movie/MovieSummary/MovieSummary';
 
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
@@ -211,7 +211,7 @@ class NewContent extends Component {
    return(
        <Aux>
            <Modal show={this.state.showModal} closed={this.CloseModalHandler}>
-           <ModalSummary 
+           <MovieModalSummary 
                id={this.state.selectedID}
                clicked={this.CloseModalHandler} />
            </Modal>
