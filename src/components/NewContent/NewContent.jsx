@@ -25,7 +25,8 @@ class NewContent extends Component {
         loading: false,
         showItems: 4,
         showModal: false,
-        MovieID: null
+        MovieID: null,
+        TvID: null
     
     }
 
@@ -101,8 +102,12 @@ class NewContent extends Component {
         this.RemoveSpinner();
     }
 
-    OpenModalHandler = (id) => {
+    OpenMovieModalHandler = (id) => {
         this.setState({showModal: true, MovieID: id})
+    }
+
+    OpenTVModalHandler = (id) => {
+        this.setState({showModal: true, TvID: id})
     }
 
     CloseModalHandler = () => {
@@ -148,7 +153,7 @@ class NewContent extends Component {
                <Display key={newInTheatersResults.id}
                         image={newInTheatersResults.poster_path}
                         title={newInTheatersResults.title}
-                        show={() => this.OpenModalHandler(newInTheatersResults.id)}
+                        show={() => this.OpenMovieModalHandler(newInTheatersResults.id)}
                         id={newInTheatersResults.id}
                         genre_ids={ids(newInTheatersResults.genre_ids)}
                         vote_average={newInTheatersResults.vote_average}
@@ -161,7 +166,7 @@ class NewContent extends Component {
                 <Display key={PopularMoviesResults.id}
                         image={PopularMoviesResults.poster_path}
                         title={PopularMoviesResults.title}
-                        show={() => this.OpenModalHandler(PopularMoviesResults.id)}
+                        show={() => this.OpenMovieModalHandler(PopularMoviesResults.id)}
                         id={PopularMoviesResults.id}
                         genre_ids={ids(PopularMoviesResults.genre_ids)}
                         vote_average={PopularMoviesResults.vote_average}
@@ -175,7 +180,7 @@ class NewContent extends Component {
                 <Display key={PopularTvShowData.id}
                         image={PopularTvShowData.poster_path}
                         title={PopularTvShowData.name}
-                        show={() => this.OpenModalHandler(PopularTvShowData.id)}
+                        show={() => this.OpenTVModalHandler(PopularTvShowData.id)}
                         id={PopularTvShowData.id}
                         genre_ids={ids(PopularTvShowData.genre_ids)}
                         vote_average={PopularTvShowData.vote_average}
@@ -213,6 +218,7 @@ class NewContent extends Component {
            <Modal show={this.state.showModal} closed={this.CloseModalHandler}>
            <MovieModalSummary 
                id={this.state.MovieID}
+               TVID={this.state.TvID}
                clicked={this.CloseModalHandler} />
            </Modal>
     <section className={classes.Content}>
