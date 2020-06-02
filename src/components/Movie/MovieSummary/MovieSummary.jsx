@@ -18,7 +18,7 @@ state = {
     }
         }
 
-        if(this.props.TVID){
+        else if(this.props.TVID){
             if(!this.state.selectedPost || (!this.state.loadedPost && this.state.selectedPost.TVID !== this.props.TVID)){
                 axios.get(`https://api.themoviedb.org/3/tv/${this.props.TVID}?api_key=${keys}&language=en-US`)
                 .then(response => {
