@@ -106,8 +106,8 @@ class NewContent extends Component {
         this.setState({showModal: true, MovieID: id})
     }
 
-    OpenTVModalHandler = (id) => {
-        this.setState({showModal: true, TvID: id})
+    OpenTVModalHandler = (Tid) => {
+        this.setState({showModal: true, TvID: Tid})
     }
 
     CloseModalHandler = () => {
