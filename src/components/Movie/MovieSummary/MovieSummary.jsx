@@ -9,7 +9,7 @@ state = {
 }
     componentDidUpdate(){
         if(this.props.id){
-            if(!this.state.selectedPost || (!this.state.loadedPost && this.state.selectedPost.id !== this.props.id)){
+            if(!this.state.selectedPost || (!this.state.selectedPost && this.state.selectedPost.id !== this.props.id)){
             
        axios.get(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${keys}&language=en-US`)
        .then(Response => {
@@ -19,7 +19,7 @@ state = {
         }
 
         else if (this.props.TVID){
-            if(!this.state.selectedPost || (!this.state.loadedPost && this.state.selectedPost.TVID !== this.props.TVID)){
+            if(!this.state.selectedPost || (!this.state.selectedPost && this.state.selectedPost.TVID !== this.props.TVID)){
                 axios.get(`https://api.themoviedb.org/3/tv/${this.props.TVID}?api_key=${keys}&language=en-US`)
                 .then(response => {
                     this.setState({selectedPost: response.data})
