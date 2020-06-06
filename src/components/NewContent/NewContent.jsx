@@ -111,7 +111,7 @@ class NewContent extends Component {
     }
 
     CloseModalHandler = () => {
-        this.setState({showModal: false})
+        this.setState({showModal: false});
     }
 
     render(){
@@ -218,7 +218,7 @@ class NewContent extends Component {
            <Modal show={this.state.showModal} closed={this.CloseModalHandler}>
            <MovieModalSummary 
                id={this.state.MovieID}
-               TVID={this.state.TvID}
+               tvid={this.state.TvID}
                clicked={this.CloseModalHandler} />
            </Modal>
     <section className={classes.Content}>

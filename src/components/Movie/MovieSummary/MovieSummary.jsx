@@ -8,29 +8,38 @@ state = {
     selectedPost: null
 }
     componentDidUpdate(){
+//todo: change to case-switch to see if it works 
+        let film = ''
+        let switchid = ''
         if(this.props.id){
-            if(!this.state.selectedPost || (!this.state.selectedPost && this.state.selectedPost.id !== this.props.id)){
-            
-       axios.get(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${keys}&language=en-US`)
+            film = 'movie'
+            switchid = this.props.id
+        }
+
+            if(this.props.tvid){
+                switchid = this.props.tvid
+               film = 'tv'
+            }
+
+       axios.get(`https://api.themoviedb.org/3/${film}/${switchid}?api_key=${keys}&language=en-US`)
        .then(Response => {
            this.setState({selectedPost: Response.data})
        })
-    }
-        }
 
-        else if (this.props.TVID){
-            if(!this.state.selectedPost || (!this.state.selectedPost && this.state.selectedPost.TVID !== this.props.TVID)){
-                axios.get(`https://api.themoviedb.org/3/tv/${this.props.TVID}?api_key=${keys}&language=en-US`)
-                .then(response => {
-                    this.setState({selectedPost: response.data})
-                })
-            }
-        }
-    }
+
+    //     if(this.props.id){
+    //         if(!this.state.selectedPost || (this.state.selectedPost && this.state.selectedPost.id !== this.props.id)){
+    //    axios.get(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${keys}&language=en-US`)
+    //    .then(Response => {
+    //        this.setState({selectedPost: Response.data})
+    //    })
+    // }
+    // }
+      }
 
     render(){
         let Summary = null
-     if(this.props.id || this.props.TVID){
+     if(this.props.id){
          Summary = <Spinner />
      }
 
