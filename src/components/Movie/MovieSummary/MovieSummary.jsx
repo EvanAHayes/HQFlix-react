@@ -7,6 +7,7 @@ class MovieSummary extends Component {
 state = {
     selectedPost: null
 }
+
     componentDidUpdate(){
 //todo: change to case-switch to see if it works 
         let film = ''
