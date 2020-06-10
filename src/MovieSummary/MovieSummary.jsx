@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
 import axios from 'axios';
-import Spinner from '../../UI/Spinner/Spinner';
-import {keys} from '../../../axiosInstances/config';
+import Spinner from '../UI/Spinner/Spinner';
+import {keys} from '../../axiosInstances/config';
 
 class MovieSummary extends Component {
 state = {
@@ -12,15 +12,30 @@ state = {
 //todo: change to case-switch to see if it works 
         let film = ''
         let switchid = ''
-        if(this.props.id){
-            film = 'movie'
-            switchid = this.props.id
+
+        switch (this.props.id || this.props.tvid){
+       case this.props.id:
+           switchid = this.props.id
+           film = 'movie';
+           break;
+        case this.props.tvid:
+            switchid = this.props.tvid
+            film = 'tv';
+            break;
+           default:
+               switchid = null
+               film = null
         }
 
-            if(this.props.tvid){
-                switchid = this.props.tvid
-               film = 'tv'
-            }
+        // if(this.props.id){
+        //     film = 'movie'
+        //     switchid = this.props.id
+        // }
+
+        //     if(this.props.tvid){
+        //         switchid = this.props.tvid
+        //        film = 'tv'
+        //     }
 
        axios.get(`https://api.themoviedb.org/3/${film}/${switchid}?api_key=${keys}&language=en-US`)
        .then(Response => {

@@ -8,7 +8,7 @@ import Button from "../UI/Button/Button";
 import Spinner from '../UI/Spinner/Spinner';
 import Aux from '../../hoc/Aux';
 import Modal from '../UI/Modal/Modal';
-import MovieModalSummary from '../Movie/MovieSummary/MovieSummary';
+import MovieModalSummary from '../MovieSummary/MovieSummary';
 
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
