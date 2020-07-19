@@ -7,6 +7,7 @@ class TVSummary extends Component{
     state = {
         PostSelection: null
     }
+
     componentDidUpdate(){
         if(this.props.tvid){
                axios.get(`https://api.themoviedb.org/3/tv/${this.props.tvid}?api_key=${keys}&language=en-US`)
@@ -26,7 +27,7 @@ class TVSummary extends Component{
 
         if(this.state.PostSelection){
             summary = (<div>
-                    <img src={`https://image.tmdb.org/t/p/w185/${this.state.selectedPost.poster_path}`} alt={this.state.selectedPost.title} />
+                    <img src={`https://image.tmdb.org/t/p/w185/${this.state.PostSelection.poster_path}`} alt={this.state.PostSelection.name} />
                 <h3>{this.state.PostSelection.name}</h3>
           <p>{this.state.PostSelection.overview}</p>
           <button onClick={this.props.Postclicked}>Close</button>

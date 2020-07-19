@@ -9,6 +9,7 @@ import Spinner from '../UI/Spinner/Spinner';
 import Aux from '../../hoc/Aux';
 import Modal from '../UI/Modal/Modal';
 import MovieModalSummary from '../MovieSummary/MovieSummary';
+import TVModalSummary from '../TVSummary/TVSummary';
 
 
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
@@ -24,7 +25,8 @@ class NewContent extends Component {
         GenreData: [],
         loading: false,
         showItems: 4,
-        showModal: false,
+        showMovieModal: false,
+        showTVModal: false,
         MovieID: null,
         TvID: null
     
@@ -103,15 +105,19 @@ class NewContent extends Component {
     }
 
     OpenMovieModalHandler = (id) => {
-        this.setState({showModal: true, MovieID: id})
+        this.setState({showMovieModal: true, MovieID: id})
     }
 
     OpenTVModalHandler = (id) => {
-        this.setState({showModal: true, TvID: id})
+        this.setState({showTVModal: true, TvID: id})
     }
 
-    CloseModalHandler = () => {
-        this.setState({showModal: false});
+    CloseMovieModalHandler = () => {
+        this.setState({showMovieModal: false});
+    }
+
+    CloseTVModalHandler = () => {
+        this.setState({showTVModal: false});
     }
 
     render(){
@@ -215,12 +221,21 @@ class NewContent extends Component {
 
    return(
        <Aux>
-           <Modal show={this.state.showModal} closed={this.CloseModalHandler}>
+           <Modal show={this.state.showMovieModal} closed={this.CloseMovieModalHandler}>
+
            <MovieModalSummary 
                id={this.state.MovieID}
-               tvid={this.state.TvID}
-               clicked={this.CloseModalHandler} />
+               clicked={this.CloseMovieModalHandler} />
            </Modal>
+           
+{/* two different modals for two different api calls  */}
+ <Modal show={this.state.showTVModal} closed={this.CloseTVModalHandler}>
+           <TVModalSummary 
+               tvid={this.state.TvID}
+               Postclicked={this.CloseTVModalHandler} />
+
+</Modal>
+
     <section className={classes.Content}>
   <div className={classes.Headcontent}>
  <div className="container">
