@@ -25,6 +25,7 @@ import Button from '../UI/Button/Button';
 
     loginClicked() {
         if(this.state.username === "ehayes" && this.state.password ==="dummy"){
+            this.props.history.push(`/welcome/${this.state.username}`)
               this.setState({ShowSuccessMessage: true})
         }
         else{
@@ -51,12 +52,10 @@ import Button from '../UI/Button/Button';
         <input type="password" class="form-control" name="password" value={this.state.password} onChange={this.handleChange}/>
        </div>
         <Button clicked={this.loginClicked}>Submit</Button>
-       
                 </div>
             </div>
         )
     }
-
  } 
 
  export default Login;

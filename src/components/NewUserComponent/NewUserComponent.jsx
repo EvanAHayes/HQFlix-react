@@ -23,7 +23,6 @@ class NewUserComponent extends Component {
     render(){
         return(
             <div>
-                
   <div class="form-row">
     <div class="form-group col-md-6">
       <label>Username</label>
@@ -49,7 +48,6 @@ class NewUserComponent extends Component {
 
   <button type="submit" class="btn btn-primary">Sign in</button>
             </div>
-
         )
     }
 }
