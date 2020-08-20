@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../UI/Button/Button';
+import AuthenticationService from '../Authentication/AuthenticationService.js';
 
  class Login extends Component {
      
@@ -25,6 +26,7 @@ import Button from '../UI/Button/Button';
 
     loginClicked() {
         if(this.state.username === "ehayes" && this.state.password ==="dummy"){
+            AuthenticationService.registerSuccessfullLogin(this.state.username, this.state.password);
             this.props.history.push(`/welcome/${this.state.username}`)
               this.setState({ShowSuccessMessage: true})
         }
