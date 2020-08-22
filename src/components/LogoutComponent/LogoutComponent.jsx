@@ -5,7 +5,7 @@ class LogoutComponent extends Component{
         return(
             <div>
                 <h1>You Are Logged Out</h1>
-                <div className="containner">
+                <div className="container">
                     Thank You For using out application.  
                 </div>
                 </div>

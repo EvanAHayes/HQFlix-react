@@ -6,7 +6,7 @@ const navItem = (props) => (
        <li className={classes.NavigationItem}>
            <Link 
            to={props.link}
-           className={props.active ? classes.active : null}>{props.children}</Link>
+           className={props.active ? classes.active : null} onClick={props.clicked}>{props.children}</Link>
        </li>
   
 );

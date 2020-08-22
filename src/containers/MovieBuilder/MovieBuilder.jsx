@@ -6,6 +6,7 @@ import Layout from '../../containers/Layout/Layout';
 import LoginComponet from '../../components/LoginComponent/LoginComponent';
 import ErrorComponent from'../../components/ErrorComponent/ErrorComponent';
 import LogoutComponent from '../../components/LogoutComponent/LogoutComponent';
+import AuthenticationRoute from '../../components/Authentication/AuthenticationRoute';
 
 
 
@@ -19,9 +20,9 @@ class MovieBuilder extends Component{
               <Layout>
                 <Switch>
                   <Route path="/" exact component={Movie} />
-                  <Route path="/welcome/:name" component={Movie} />
+                  <AuthenticationRoute path="/welcome/:name" component={Movie} />
                   <Route path="/SignIn" component={LoginComponet} />
-                  <Route path="/logout" component={LogoutComponent} />
+                  <AuthenticationRoute path="/logout" component={LogoutComponent} />
                   <Route component={ErrorComponent} />
                 </Switch>
               <Footer />
