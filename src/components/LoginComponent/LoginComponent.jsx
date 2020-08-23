@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../UI/Button/Button';
 import AuthenticationService from '../Authentication/AuthenticationService.js';
+import {Link} from 'react-router-dom';
 
  class Login extends Component {
      
@@ -43,7 +44,7 @@ import AuthenticationService from '../Authentication/AuthenticationService.js';
             <div>
                 <div className="container">
                 <h1>Login</h1>
-                <Button>Create New User</Button>
+                <Button><Link to="/New">Create New User</Link></Button>
                 <div class="form-group col-md-10">
                 {this.state.hasLoginFailed && <div className=" alert alert-warning">Invalid Credentials</div>}
            <label>Username</label>
