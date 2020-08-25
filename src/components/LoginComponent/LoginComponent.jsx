@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '../UI/Button/Button';
 import AuthenticationService from '../Authentication/AuthenticationService.js';
 import {Link} from 'react-router-dom';
+import Styles from './LoginComponent.module.css'
 
  class Login extends Component {
      
@@ -44,7 +45,8 @@ import {Link} from 'react-router-dom';
             <div>
                 <div className="container">
                 <h1>Login</h1>
-                <Button><Link to="/New">Create New User</Link></Button>
+                <Button><Link style={{color: "white"}} to="/New">Create New User</Link></Button>
+                <div className={Styles.design}>
                 <div class="form-group col-md-10">
                 {this.state.hasLoginFailed && <div className=" alert alert-warning">Invalid Credentials</div>}
            <label>Username</label>
@@ -53,6 +55,7 @@ import {Link} from 'react-router-dom';
         <div class="form-group col-md-10">
         <label>Password</label>
         <input type="password" class="form-control" name="password" value={this.state.password} onChange={this.handleChange}/>
+       </div>
        </div>
         <Button clicked={this.loginClicked}>Submit</Button>
                 </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ValidationMsg from '../UI/Validation/Validation';
 import Button from '../UI/Button/Button';
+import Styles from './NewUserComponent.module.css';
 
 class NewUserComponent extends Component {
     constructor(props){
@@ -13,24 +14,19 @@ class NewUserComponent extends Component {
             email: '',
             isEmailValid: false,
             firstname: '',
+            isFirstnameValid: false,
             lastname: '',
+            isLastnameValid: false,
             formValid: false,
             errorMsg: {}
         }
-
-    this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event) {
-        //has to match name in elements below 
-        //use square brackets when you want to change a variable and not a specific costant in the state
-        //the name is from the input fields and that state has to match
-        this.setState({ [event.target.name]: event.target.value })
-    }
+  
 
     validateForm = () => {
-        const {isUsernameValid, isPasswordValid, isEmailValid} = this.state;
-        this.setState({formValid: isUsernameValid && isPasswordValid && isEmailValid })
+        const {isUsernameValid, isPasswordValid, isEmailValid, isFirstnameValid, isLastnameValid} = this.state;
+        this.setState({formValid: isUsernameValid && isPasswordValid && isEmailValid && isFirstnameValid && isLastnameValid })
     }
 
     updateUsername = (username) => {
@@ -63,6 +59,10 @@ class NewUserComponent extends Component {
             isPasswordValid = false;
             errorMsg.password = "Must be atleast 5 characters long"
         }
+        else if(!/[A-Z]/.test(password)){
+            isPasswordValid = false;
+            errorMsg.password = "Must include capital letter"
+        }
         else if(!/[0-9]/.test(password)){
             isPasswordValid = false;
             errorMsg.password = "Must include a number"
@@ -88,33 +88,69 @@ class NewUserComponent extends Component {
         this.setState({isEmailValid, errorMsg}, this.validateForm)
       }
 
+      updateFirstName = (firstname) => {
+        this.setState({firstname}, this.validateFirstname)
+    }
+
+    validateFirstname = () => {
+        const {firstname} = this.state;
+        let isFirstnameValid = true;
+        let errorMsg = {...this.state.errorMsg}
+
+        if(firstname.length <= 0){
+            isFirstnameValid = false;
+            errorMsg.firstname = "Please Enter First Name"
+        }
+
+        this.setState({isFirstnameValid, errorMsg}, this.validateForm)
+    }
+
+    updateLastName = (lastname) => {
+        this.setState({lastname}, this.validateLastName)
+    }
+
+    validateLastName = () => {
+        const{lastname} = this.state;
+        let isLastnameValid = true;
+        let errorMsg = {...this.state.errorMsg}
+
+        if(lastname.length <= 0){
+            isLastnameValid = false;
+            errorMsg.lastname = "Please Enter Last Name"
+        }
+
+        this.setState({isLastnameValid, errorMsg}, this.validateForm)
+    }
+
     render(){
         return(
-            <div>
+            <div className={Styles.design}>
   <div className="form-group">
-    <div className="form-group col-md-6">
+    <div className="form-group col-md-6 offset-md-3">
       <label>Username</label>
       <ValidationMsg valid={this.state.isUsernameValid} message={this.state.errorMsg.username} />
       <input type="username" className="form-control" name="username" onChange={(e) => this.updateUsername(e.target.value)} value={this.state.username} />
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 offset-md-3">
       <label>Password</label>
       <ValidationMsg valid={this.state.isPasswordValid} message={this.state.errorMsg.password} />
       <input type="password" className="form-control" name="password" onChange={(e) => this.updatePassword(e.target.value)} value={this.state.password} />
     </div>
   </div>
-  <div className="form-group col-md-6">
+  <div className="form-group col-md-6 offset-md-3">
       <label>Email</label>
       <ValidationMsg valid={this.state.isEmailValid} message={this.state.errorMsg.email} />
       <input type="email" className="form-control" name="email" onChange={(e) => this.updateEmail(e.target.value)} value={this.state.email} />
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 offset-md-3">
       <label>First Name</label>
-      <input type="firstname" className="form-control" name="firstname" onChange={this.handleChange} value={this.state.firstname} />
+      <ValidationMsg valid={this.state.isFirstnameValid} message={this.state.errorMsg.firstname} />
+      <input type="firstname" className="form-control" name="firstname" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 offset-md-3">
       <label>Last Name</label>
-      <input type="lastname" className="form-control" name="lastname" onChange={this.handleChange} value={this.state.lastname} />
+      <ValidationMsg valid={this.state.isLastnameValid} message={this.state.errorMsg.lastname} />
+      <input type="lastname" className="form-control" name="lastname" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
     </div>
     
   <Button type="submit" className="btn btn-success" disable={!this.state.formValid} clicked={this.clicked}>Sign in</Button>
