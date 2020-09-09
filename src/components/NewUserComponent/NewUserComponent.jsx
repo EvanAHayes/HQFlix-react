@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ValidationMsg from '../UI/Validation/Validation';
 import Button from '../UI/Button/Button';
 import Styles from './NewUserComponent.module.css';
+import NewUserService from '../API/NewUserService';
 
 class NewUserComponent extends Component {
     constructor(props){
@@ -122,6 +123,18 @@ class NewUserComponent extends Component {
         this.setState({isLastnameValid, errorMsg}, this.validateForm)
     }
 
+    onSubmit(values){
+      let RegisterNewUser = {
+             username: values.username,
+             password: values.password,
+             email: values.email,
+             firstName: values.firstName,
+             lastName: values.lastName
+      }
+      NewUserService.CreateNewUser(RegisterNewUser).then(()=> this.props.history.push('/signin'))
+
+    }
+
     render(){
         return(
             <div className={Styles.design}>
@@ -145,12 +158,12 @@ class NewUserComponent extends Component {
     <div class="form-group col-md-6 offset-md-3">
       <label>First Name</label>
       <ValidationMsg valid={this.state.isFirstnameValid} message={this.state.errorMsg.firstname} />
-      <input type="firstname" className="form-control" name="firstname" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
+      <input type="firstname" className="form-control" name="firstName" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label>Last Name</label>
       <ValidationMsg valid={this.state.isLastnameValid} message={this.state.errorMsg.lastname} />
-      <input type="lastname" className="form-control" name="lastname" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
+      <input type="lastname" className="form-control" name="lastName" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
     </div>
     
   <Button type="submit" className="btn btn-success" disable={!this.state.formValid} clicked={this.clicked}>Sign in</Button>
