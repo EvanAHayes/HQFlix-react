@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ValidationMsg from '../UI/Validation/Validation';
+import {Formik, Form, Field} from 'formik';
 import Button from '../UI/Button/Button';
 import Styles from './NewUserComponent.module.css';
 import NewUserService from '../API/NewUserService';
@@ -14,9 +15,9 @@ class NewUserComponent extends Component {
             isPasswordValid: false,
             email: '',
             isEmailValid: false,
-            firstname: '',
+            firstName: '',
             isFirstnameValid: false,
-            lastname: '',
+            lastName: '',
             isLastnameValid: false,
             formValid: false,
             errorMsg: {}
@@ -89,16 +90,16 @@ class NewUserComponent extends Component {
         this.setState({isEmailValid, errorMsg}, this.validateForm)
       }
 
-      updateFirstName = (firstname) => {
-        this.setState({firstname}, this.validateFirstname)
+      updateFirstName = (firstName) => {
+        this.setState({firstName}, this.validateFirstname)
     }
 
     validateFirstname = () => {
-        const {firstname} = this.state;
+        const {firstName} = this.state;
         let isFirstnameValid = true;
         let errorMsg = {...this.state.errorMsg}
 
-        if(firstname.length <= 0){
+        if(firstName.length <= 0){
             isFirstnameValid = false;
             errorMsg.firstname = "Please Enter First Name"
         }
@@ -106,16 +107,16 @@ class NewUserComponent extends Component {
         this.setState({isFirstnameValid, errorMsg}, this.validateForm)
     }
 
-    updateLastName = (lastname) => {
-        this.setState({lastname}, this.validateLastName)
+    updateLastName = (lastName) => {
+        this.setState({lastName}, this.validateLastName)
     }
 
     validateLastName = () => {
-        const{lastname} = this.state;
+        const{lastName} = this.state;
         let isLastnameValid = true;
         let errorMsg = {...this.state.errorMsg}
 
-        if(lastname.length <= 0){
+        if(lastName.length <= 0){
             isLastnameValid = false;
             errorMsg.lastname = "Please Enter Last Name"
         }
@@ -131,12 +132,18 @@ class NewUserComponent extends Component {
              firstName: values.firstName,
              lastName: values.lastName
       }
-      NewUserService.CreateNewUser(RegisterNewUser).then(()=> this.props.history.push('/signin'))
+      NewUserService.CreateNewUser(RegisterNewUser).then(()=> this.props.history.push('//SignIn'))
 
     }
 
     render(){
+      let username = this.state.username;
+      let password = this.state.password;
+      let email = this.state.email;
+      let firstName = this.state.firstName;
+      let lastName = this.state.lastName;
         return(
+          
             <div className={Styles.design}>
   <div className="form-group">
     <div className="form-group col-md-6 offset-md-3">
