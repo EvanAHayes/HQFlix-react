@@ -132,7 +132,8 @@ class NewUserComponent extends Component {
              firstName: values.firstName,
              lastName: values.lastName
       }
-      NewUserService.CreateNewUser(RegisterNewUser).then(()=> this.props.history.push('//SignIn'))
+      
+      NewUserService.CreateNewUser(RegisterNewUser).then(()=> this.props.history.push('/SignIn'))
 
     }
 
@@ -145,36 +146,44 @@ class NewUserComponent extends Component {
         return(
           
             <div className={Styles.design}>
+              <Formik initialValues={{firstName:firstName, lastName:lastName, email: email, password:password, username:username}}
+                       onSubmit={this.onSubmit}
+                       enableReinitialize={true}>
+        {
+        (props) => (
+          <Form>
   <div className="form-group">
     <div className="form-group col-md-6 offset-md-3">
       <label>Username</label>
       <ValidationMsg valid={this.state.isUsernameValid} message={this.state.errorMsg.username} />
-      <input type="username" className="form-control" name="username" onChange={(e) => this.updateUsername(e.target.value)} value={this.state.username} />
+      <Field type="text" className="form-control" name="username" onChange={(e) => this.updateUsername(e.target.value)} value={this.state.username} />
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label>Password</label>
       <ValidationMsg valid={this.state.isPasswordValid} message={this.state.errorMsg.password} />
-      <input type="password" className="form-control" name="password" onChange={(e) => this.updatePassword(e.target.value)} value={this.state.password} />
+      <Field type="text" className="form-control" name="password" onChange={(e) => this.updatePassword(e.target.value)} value={this.state.password} />
     </div>
   </div>
   <div className="form-group col-md-6 offset-md-3">
       <label>Email</label>
       <ValidationMsg valid={this.state.isEmailValid} message={this.state.errorMsg.email} />
-      <input type="email" className="form-control" name="email" onChange={(e) => this.updateEmail(e.target.value)} value={this.state.email} />
+      <Field type="email" className="form-control" name="email" onChange={(e) => this.updateEmail(e.target.value)} value={this.state.email} />
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label>First Name</label>
       <ValidationMsg valid={this.state.isFirstnameValid} message={this.state.errorMsg.firstname} />
-      <input type="firstname" className="form-control" name="firstName" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
+      <Field type="text" className="form-control" name="firstName" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label>Last Name</label>
       <ValidationMsg valid={this.state.isLastnameValid} message={this.state.errorMsg.lastname} />
-      <input type="lastname" className="form-control" name="lastName" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
+      <Field type="text" className="form-control" name="lastName" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
     </div>
     
-  <Button type="submit" className="btn btn-success" disable={!this.state.formValid} clicked={this.clicked}>Sign in</Button>
-
+  <Button type="submit" className="btn btn-success" disable={!this.state.formValid}>Sign in</Button>
+  </Form>
+        )}
+  </Formik>
             </div>
         )
     }
