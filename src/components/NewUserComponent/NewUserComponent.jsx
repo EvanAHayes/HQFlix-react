@@ -159,7 +159,7 @@ class NewUserComponent extends Component {
       <ValidationMsg className="alert alert-warning" valid={this.state.isUsernameValid} message={this.state.errorMsg.username} />
       <Field type="text" className="form-control" name="username" onChange={(e) => this.updateUsername(e.target.value)} value={this.state.username} />
     </div>
-    <div class="form-group col-md-6 offset-md-3">
+    <div className="form-group col-md-6 offset-md-3">
       <label>Password</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isPasswordValid} message={this.state.errorMsg.password} />
       <Field type="text" className="form-control" name="password" onChange={(e) => this.updatePassword(e.target.value)} value={this.state.password} />
@@ -170,12 +170,12 @@ class NewUserComponent extends Component {
       <ValidationMsg className="alert alert-warning" valid={this.state.isEmailValid} message={this.state.errorMsg.email} />
       <Field type="email" className="form-control" name="email" onChange={(e) => this.updateEmail(e.target.value)} value={this.state.email} />
     </div>
-    <div class="form-group col-md-6 offset-md-3">
+    <div className="form-group col-md-6 offset-md-3">
       <label>First Name</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isFirstnameValid} message={this.state.errorMsg.firstname} />
       <Field type="text" className="form-control" name="firstName" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
     </div>
-    <div class="form-group col-md-6 offset-md-3">
+    <div className="form-group col-md-6 offset-md-3">
       <label>Last Name</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isLastnameValid} message={this.state.errorMsg.lastname} />
       <Field type="text" className="form-control" name="lastName" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
