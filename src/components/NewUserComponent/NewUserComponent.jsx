@@ -3,7 +3,7 @@ import ValidationMsg from '../UI/Validation/Validation';
 import {Formik, Form, Field} from 'formik';
 import Button from '../UI/Button/Button';
 import Styles from './NewUserComponent.module.css';
-import NewUserService from '../API/NewUserService';
+import NewUserService from '../API/NewUserService.js';
 
 class NewUserComponent extends Component {
     constructor(props){
@@ -57,7 +57,7 @@ class NewUserComponent extends Component {
         let isPasswordValid = true;
         let errorMsg = {...this.state.errorMsg}
 
-        if(password.length < 6){
+        if(password.length < 5){
             isPasswordValid = false;
             errorMsg.password = "Must be atleast 5 characters long"
         }
@@ -132,8 +132,9 @@ class NewUserComponent extends Component {
              firstName: values.firstName,
              lastName: values.lastName
       }
+
+      NewUserService.CreateNewUser(RegisterNewUser).then(() => this.props.history.push('/SignIn'))
       
-      NewUserService.CreateNewUser(RegisterNewUser).then(()=> this.props.history.push('/SignIn'))
 
     }
 
@@ -146,7 +147,7 @@ class NewUserComponent extends Component {
         return(
           
             <div className={Styles.design}>
-              <Formik initialValues={{firstName:firstName, lastName:lastName, email: email, password:password, username:username}}
+              <Formik initialValues={{firstName: firstName, lastName: lastName, email: email, password: password, username: username}}
                        onSubmit={this.onSubmit}
                        enableReinitialize={true}>
         {
@@ -155,33 +156,34 @@ class NewUserComponent extends Component {
   <div className="form-group">
     <div className="form-group col-md-6 offset-md-3">
       <label>Username</label>
-      <ValidationMsg valid={this.state.isUsernameValid} message={this.state.errorMsg.username} />
+      <ValidationMsg className="alert alert-warning" valid={this.state.isUsernameValid} message={this.state.errorMsg.username} />
       <Field type="text" className="form-control" name="username" onChange={(e) => this.updateUsername(e.target.value)} value={this.state.username} />
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label>Password</label>
-      <ValidationMsg valid={this.state.isPasswordValid} message={this.state.errorMsg.password} />
+      <ValidationMsg className="alert alert-warning" valid={this.state.isPasswordValid} message={this.state.errorMsg.password} />
       <Field type="text" className="form-control" name="password" onChange={(e) => this.updatePassword(e.target.value)} value={this.state.password} />
     </div>
   </div>
   <div className="form-group col-md-6 offset-md-3">
       <label>Email</label>
-      <ValidationMsg valid={this.state.isEmailValid} message={this.state.errorMsg.email} />
+      <ValidationMsg className="alert alert-warning" valid={this.state.isEmailValid} message={this.state.errorMsg.email} />
       <Field type="email" className="form-control" name="email" onChange={(e) => this.updateEmail(e.target.value)} value={this.state.email} />
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label>First Name</label>
-      <ValidationMsg valid={this.state.isFirstnameValid} message={this.state.errorMsg.firstname} />
+      <ValidationMsg className="alert alert-warning" valid={this.state.isFirstnameValid} message={this.state.errorMsg.firstname} />
       <Field type="text" className="form-control" name="firstName" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
     </div>
     <div class="form-group col-md-6 offset-md-3">
       <label>Last Name</label>
-      <ValidationMsg valid={this.state.isLastnameValid} message={this.state.errorMsg.lastname} />
+      <ValidationMsg className="alert alert-warning" valid={this.state.isLastnameValid} message={this.state.errorMsg.lastname} />
       <Field type="text" className="form-control" name="lastName" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
     </div>
     
   <Button type="submit" className="btn btn-success" disable={!this.state.formValid}>Sign in</Button>
   </Form>
+
         )}
   </Formik>
             </div>
