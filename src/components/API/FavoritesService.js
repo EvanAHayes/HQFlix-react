@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 class FavoritesService {
-    CreateFavorites(username, favorite){
-        return axios.post()
+    CreateFavorites(favorite){
+        return axios.post("http://localhost:8080/api/favorites",favorite);
     }
 
     GetFavorites(){
