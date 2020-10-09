@@ -27,17 +27,18 @@ import Styles from './LoginComponent.module.css'
     }
 
     loginClicked() {
-        if(this.state.username === "ehayes" && this.state.password ==="dummy"){
-            AuthenticationService.registerSuccessfullLogin(this.state.username, this.state.password);
-            this.props.history.push(`/welcome/${this.state.username}`)
-              this.setState({ShowSuccessMessage: true})
-        }
-        else{
 
+        AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password).then(
+            (response)=> {
+                AuthenticationService.registerSuccessFullLoginForJwt(this.state.username, response.data.token);
+                this.setState({ShowSuccessMessage: true})
+                this.props.history.push(`/welcome/${this.state.username}`)
+                
+            }
+        ).catch(()=> {
             this.setState({hasLoginFailed: true, ShowSuccessMessage:false})
-
-        console.log('failed')
-        }
+             console.log('failed')
+        })
     }
 
     render() {
@@ -45,16 +46,16 @@ import Styles from './LoginComponent.module.css'
             <div>
                 <div className="container">
                 <h1>Login</h1>
-                <Button><Link style={{color: "white"}} to="/New">Create New User</Link></Button>
+                <Button><Link style={{color: "white"}} to="/register">Create New User</Link></Button>
                 <div className={Styles.design}>
-                <div class="form-group col-md-10">
+                <div className="form-group col-md-10">
                 {this.state.hasLoginFailed && <div className=" alert alert-warning">Invalid Credentials</div>}
            <label>Username</label>
-          <input type="username" class="form-control" name="username" value={this.state.username} onChange={this.handleChange} />
+          <input type="username" className="form-control" name="username" value={this.state.username} onChange={this.handleChange} />
        </div>
-        <div class="form-group col-md-10">
+        <div className="form-group col-md-10">
         <label>Password</label>
-        <input type="password" class="form-control" name="password" value={this.state.password} onChange={this.handleChange}/>
+        <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleChange}/>
        </div>
        </div>
         <Button clicked={this.loginClicked}>Submit</Button>

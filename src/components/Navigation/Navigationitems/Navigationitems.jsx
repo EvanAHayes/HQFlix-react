@@ -11,18 +11,17 @@ class navigationItems extends Component{
 render(){
 
     const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+    let username = AuthenticationService.getLoggedInUserName();
     
  return(
     <ul className={classes.NavigationItems}>
         <NavItem link="/">Home</NavItem>
-        {!isUserLoggedIn && <NavItem link="SignIn">Sign-In</NavItem>}
+        {!isUserLoggedIn && <NavItem link="/SignIn">Sign-In</NavItem>}
+        {isUserLoggedIn && <NavItem link={`/${username}/favorites`}>Favorites</NavItem>}
         {isUserLoggedIn && <NavItem link="/logout" clicked={AuthenticationService.logout}>LogOut</NavItem>}
-        
-         {/* <NavItem><Link to="/" >Home</Link></NavItem> */}
-         {/* <NavItem><Link to ="SignIn">Sign-In</Link></NavItem> */}
     </ul>
  )
 }
-};
+}
 
 export default withRouter(navigationItems);

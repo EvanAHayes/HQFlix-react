@@ -23,9 +23,9 @@ class MovieBuilder extends Component{
                 <Switch>
                   <Route path="/" exact component={Movie} />
                   <AuthenticationRoute path="/welcome/:name" component={Movie} />
-                  <Route path="/SignIn" component={LoginComponet} />
-                  <Route path="/New" component={NewUserComponent} /> 
-                  <AuthenticationRoute path="/favorites" component={ListFavoritesComponent} />
+                  <Route exact path="/SignIn" component={LoginComponet} />
+                  <Route path="/register" component={NewUserComponent} /> 
+                  <AuthenticationRoute path="/:name/favorites" component={ListFavoritesComponent} />
                   <AuthenticationRoute path="/logout" component={LogoutComponent} />
                   <Route component={ErrorComponent} />
                 </Switch>

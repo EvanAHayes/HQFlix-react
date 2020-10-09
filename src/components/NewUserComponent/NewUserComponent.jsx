@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ValidationMsg from '../UI/Validation/Validation';
-import {Formik, Form, Field} from 'formik';
 import Button from '../UI/Button/Button';
 import Styles from './NewUserComponent.module.css';
 import NewUserService from '../API/NewUserService.js';
+import { withRouter } from "react-router-dom";
 
 class NewUserComponent extends Component {
     constructor(props){
@@ -122,73 +122,59 @@ class NewUserComponent extends Component {
         }
 
         this.setState({isLastnameValid, errorMsg}, this.validateForm)
+        this.addUser = this.addUser.bind(this);
     }
 
-    onSubmit(values){
+    addUser(e){
+      e.preventDefault();
+
       let RegisterNewUser = {
-             username: values.username,
-             password: values.password,
-             email: values.email,
-             firstName: values.firstName,
-             lastName: values.lastName
+             username: this.state.username,
+             password: this.state.password,
+             email: this.state.email,
+             firstName: this.state.firstName,
+             lastName: this.state.lastName
       }
-
-      NewUserService.CreateNewUser(RegisterNewUser).then(() => this.props.history.push('/SignIn'))
-      
-
-    }
+   
+      NewUserService.CreateNewUser(RegisterNewUser)
+                                  .then(() => this.props.history.push('/SignIn')) 
+   }
 
     render(){
-      let username = this.state.username;
-      let password = this.state.password;
-      let email = this.state.email;
-      let firstName = this.state.firstName;
-      let lastName = this.state.lastName;
         return(
-          
             <div className={Styles.design}>
-              <Formik initialValues={{firstName: firstName, lastName: lastName, email: email, password: password, username: username}}
-                       onSubmit={this.onSubmit}
-                       enableReinitialize={true}>
-        {
-        (props) => (
-          <Form>
   <div className="form-group">
     <div className="form-group col-md-6 offset-md-3">
       <label>Username</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isUsernameValid} message={this.state.errorMsg.username} />
-      <Field type="text" className="form-control" name="username" onChange={(e) => this.updateUsername(e.target.value)} value={this.state.username} />
+      <input type="text" className="form-control" name="username" onChange={(e) => this.updateUsername(e.target.value)} value={this.state.username} />
     </div>
     <div className="form-group col-md-6 offset-md-3">
       <label>Password</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isPasswordValid} message={this.state.errorMsg.password} />
-      <Field type="text" className="form-control" name="password" onChange={(e) => this.updatePassword(e.target.value)} value={this.state.password} />
+      <input type="text" className="form-control" name="password" onChange={(e) => this.updatePassword(e.target.value)} value={this.state.password} />
     </div>
   </div>
   <div className="form-group col-md-6 offset-md-3">
       <label>Email</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isEmailValid} message={this.state.errorMsg.email} />
-      <Field type="email" className="form-control" name="email" onChange={(e) => this.updateEmail(e.target.value)} value={this.state.email} />
+      <input type="email" className="form-control" name="email" onChange={(e) => this.updateEmail(e.target.value)} value={this.state.email} />
     </div>
     <div className="form-group col-md-6 offset-md-3">
       <label>First Name</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isFirstnameValid} message={this.state.errorMsg.firstname} />
-      <Field type="text" className="form-control" name="firstName" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
+      <input type="text" className="form-control" name="firstName" onChange={(e) => this.updateFirstName(e.target.value)} value={this.state.firstname} />
     </div>
     <div className="form-group col-md-6 offset-md-3">
       <label>Last Name</label>
       <ValidationMsg className="alert alert-warning" valid={this.state.isLastnameValid} message={this.state.errorMsg.lastname} />
-      <Field type="text" className="form-control" name="lastName" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
+      <input type="text" className="form-control" name="lastName" onChange={(e) => this.updateLastName(e.target.value)} value={this.state.lastname} />
     </div>
     
-  <Button type="submit" className="btn btn-success" disable={!this.state.formValid}>Sign in</Button>
-  </Form>
-
-        )}
-  </Formik>
+  <Button type="submit" className="btn btn-success" disabled={!this.state.formValid} clicked={this.addUser}>Sign in</Button>
             </div>
         )
     }
 }
 
-export default NewUserComponent;
+export default withRouter(NewUserComponent);

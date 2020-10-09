@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 
 class ListFavorites extends Component{
-   state = {
+    constructor(props){
+        super(props)
+        this.state = {
        favorites: []
    }
+}
 
 
     render(){

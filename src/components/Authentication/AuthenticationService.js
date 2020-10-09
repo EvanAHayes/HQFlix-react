@@ -28,12 +28,38 @@ class AuthenticationService {
         return true;
     }
 
+    getLoggedInUserName(){
+        let user = sessionStorage.getItem('authenticatedUser');
+        if(user === null){
+         return ""
+        } 
+        
+        return user;
+    }
+
     executeJwtAuthenticationService(username,password){
 
-        return axios.post("http://localhost:8080/authenticate", 
-                {username, password}
-    
+        return axios.post("http://localhost:8080/api/auth/login", 
+                {username, password}    
                 )}
+
+    setupAxiosInterceptors(basicAuthHeader){    
+                    axios.interceptors.request.use(
+                        (config) => {
+                            if(this.isUserLoggedIn){
+                
+                            config.headers.authorization = basicAuthHeader
+                        }
+                        return config
+                    }
+                    )
+                
+                }
+
+    registerSuccessFullLoginForJwt(username, token) {
+                    sessionStorage.setItem('authenticatedUser', username)
+                    this.setupAxiosInterceptors(this.createJWTToken(token))
+                }
 }
 
 export default new AuthenticationService()
