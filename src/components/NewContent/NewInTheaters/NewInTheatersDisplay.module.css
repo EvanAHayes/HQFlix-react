@@ -1,6 +1,5 @@
 .card{
     background-color: silver;
-    cursor: pointer;
    }
 .card__cover {
     position: relative;
@@ -13,6 +12,14 @@
 }
 .cardList {
     margin-bottom: 25px;
+}
+
+#heartIcon{
+    cursor: pointer;
+}
+
+p{
+    cursor: pointer;
 }
 
 h3{

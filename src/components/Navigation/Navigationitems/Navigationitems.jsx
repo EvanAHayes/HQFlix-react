@@ -11,7 +11,7 @@ class navigationItems extends Component {
    render() {
 
       const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-      let username = AuthenticationService.getLoggedInUserName();
+      const username = AuthenticationService.getLoggedInUserName();
 
       return (
          <ul className={classes.NavigationItems}>

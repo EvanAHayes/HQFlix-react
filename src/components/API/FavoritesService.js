@@ -5,8 +5,8 @@ class FavoritesService {
         return axios.post("http://localhost:8080/api/favorites", favorite);
     }
 
-    GetFavorites() {
-        return axios.get()
+    GetFavorites(username) {
+        return axios.get(`http://localhost:8080/api/favorites/users/${username}`)
     }
 
     DeleteFavorite() {
