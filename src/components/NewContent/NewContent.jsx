@@ -161,7 +161,6 @@ class NewContent extends Component {
 
             newInTheatersResults = this.state.NewInTheatersData.slice(0, this.state.showItems).map(newInTheatersResults => {
                 return (
-
                     <Display key={newInTheatersResults.id}
                         image={newInTheatersResults.poster_path}
                         title={newInTheatersResults.title}
@@ -170,7 +169,6 @@ class NewContent extends Component {
                         genre_ids={ids(newInTheatersResults.genre_ids)}
                         vote_average={newInTheatersResults.vote_average}
                         overview={newInTheatersResults.overview} />
-
                 )
             });
 
