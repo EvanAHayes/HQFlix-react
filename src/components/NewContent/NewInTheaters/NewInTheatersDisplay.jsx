@@ -7,7 +7,11 @@ class NewInTheatersDisplay extends Component{
         super();
 
         this.state = {
-           black: true
+           black: true,
+           title: '',
+           description: '',
+           poster_path: '',
+
         }
     }
 
@@ -42,13 +46,17 @@ return(
             <div className="row">
                 <div className="col-12 col-sm-4">
                     <div className={`${styles.card__cover}`}>
-                        <img src={`https://image.tmdb.org/t/p/w185/${this.props.image}`} alt={`${this.props.title}`} />
+                       <li value={this.state.poster_path}>
+                        <img id="image" src={`https://image.tmdb.org/t/p/w185/${this.props.image}`} alt={`${this.props.title}`} />
+                        </li>
                     </div>
                 </div>
 
                     <div className="col-12 col-sm-8">
                         <div className="card__content">
+                            <li>
                             <h3 className="card__title">{this.props.title}</h3>
+                            </li>
                             <div onClick={this.props.getFavoriteDetails}>{btn_class}</div>
                                 <span className="card__category">
                                 {this.props.genre_ids}
@@ -56,8 +64,7 @@ return(
 
                     <div className="card__wrap">
                             <span className="card__rate"><i className="fas fa-star"></i>{this.props.vote_average}</span>
-                            <ul className="card__list">
-                                        <li>HD</li>
+                            <ul className="card__list">                
                             </ul>
                     </div>
 

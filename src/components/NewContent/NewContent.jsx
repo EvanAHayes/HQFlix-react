@@ -12,6 +12,7 @@ import MovieModalSummary from '../MovieSummary/MovieSummary';
 import TVModalSummary from '../TVSummary/TVSummary';
 
 
+
 const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
 const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
 const PopularTvShowURL = `tv/popular?api_key=${keys}&language=en-US`;
@@ -28,7 +29,8 @@ class NewContent extends Component {
         showMovieModal: false,
         showTVModal: false,
         MovieID: null,
-        TvID: null
+        TvID: null,
+        black: true
     }
 
     componentDidMount() {
@@ -135,6 +137,7 @@ class NewContent extends Component {
 
 
 
+
         const ids = (id) => {
             let el = []
             this.state.GenreData.forEach(genreids => {
@@ -155,8 +158,10 @@ class NewContent extends Component {
 
 
         if (!this.state.error) {
+
             newInTheatersResults = this.state.NewInTheatersData.slice(0, this.state.showItems).map(newInTheatersResults => {
                 return (
+
                     <Display key={newInTheatersResults.id}
                         image={newInTheatersResults.poster_path}
                         title={newInTheatersResults.title}
@@ -165,6 +170,7 @@ class NewContent extends Component {
                         genre_ids={ids(newInTheatersResults.genre_ids)}
                         vote_average={newInTheatersResults.vote_average}
                         overview={newInTheatersResults.overview} />
+
                 )
             });
 
@@ -199,6 +205,7 @@ class NewContent extends Component {
         const NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
             <div className="theater row">
                 {newInTheatersResults}
+
                 {ShowMorenewInTheatersResults}
                 {this.state.showItems < this.state.NewInTheatersData.length && ShowMorenewInTheatersResultsButton}
             </div>

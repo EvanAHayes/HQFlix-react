@@ -17,6 +17,9 @@
 #heartIcon{
     cursor: pointer;
 }
+li{
+    list-style-type: none;
+}
 
 p{
     cursor: pointer;
