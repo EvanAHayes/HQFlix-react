@@ -1,23 +1,16 @@
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 class AuthenticationService {
 
     createJWTToken(token) {
-        return 'Bearer ' + token
-    }
-
-    createBasicAuthToken(Username, Password) {
-        return 'Basic ' + window.btoa(Username + ":" + Password)
-    }
-
-    registerSuccessfullLogin(username, password) {
-        console.log('register')
-        sessionStorage.setItem('authenticatedUser', username);
+        return 'Bearer ' + token   
     }
 
     //Todo: dont forget to add logout button for this
     logout() {
         sessionStorage.removeItem('authenticatedUser')
+        localStorage.removeItem('jwtToken')
     }
 
     isUserLoggedIn() {
@@ -33,8 +26,15 @@ class AuthenticationService {
         if (user === null) {
             return ""
         }
-
         return user;
+    }
+
+    gettoken(){
+        let token = sessionStorage.getItem('token');
+        if(token === null){
+            return ""
+        }
+        return token;
     }
 
     executeJwtAuthenticationService(username, password) {
@@ -50,7 +50,8 @@ class AuthenticationService {
             (config) => {
                 if (this.isUserLoggedIn) {
 
-                    config.headers.authorization = basicAuthHeader
+                    config.headers.Authorization = basicAuthHeader
+                    sessionStorage.setItem("token", config.headers.Authorization)
                 }
                 return config
             }
@@ -60,7 +61,15 @@ class AuthenticationService {
 
     registerSuccessFullLoginForJwt(username, token) {
         sessionStorage.setItem('authenticatedUser', username)
-        this.setupAxiosInterceptors(this.createJWTToken(token))
+        //this.setupAxiosInterceptors(this.createJWTToken(token))
+
+        if(token){
+            axios.defaults.headers.common["Authorization"] = this.createJWTToken(token);
+            localStorage.setItem("jwtToken", this.createJWTToken(token))
+            jwt_decode(token)
+        }else{
+            delete axios.defaults.headers.common["Authorization"]
+        }
     }
 }
 

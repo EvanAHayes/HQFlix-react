@@ -15,10 +15,10 @@ class navigationItems extends Component {
 
       return (
          <ul className={classes.NavigationItems}>
-            <NavItem link="/">Home</NavItem>
-            {!isUserLoggedIn && <NavItem link="/SignIn">Sign-In</NavItem>}
+            {!isUserLoggedIn && <NavItem link="/register">Register</NavItem>}
+            {!isUserLoggedIn && <NavItem link="/SignIn">Login</NavItem>}
             {isUserLoggedIn && <NavItem link={`/${username}/favorites`}>Favorites</NavItem>}
-            {isUserLoggedIn && <NavItem link="/logout" clicked={AuthenticationService.logout}>LogOut</NavItem>}
+            {isUserLoggedIn && <NavItem link="/" clicked={AuthenticationService.logout}>LogOut</NavItem>}
          </ul>
       )
    }

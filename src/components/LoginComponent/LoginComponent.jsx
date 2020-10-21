@@ -5,10 +5,9 @@ import {Link} from 'react-router-dom';
 import Styles from './LoginComponent.module.css'
 
  class Login extends Component {
-     
-    //any properties is passed down to super class constructor
-    constructor(props){
-        super(props)
+   
+    constructor(){
+        super()
         this.state = {
             username: '',
             password: '',
@@ -20,9 +19,6 @@ import Styles from './LoginComponent.module.css'
     }
 
     handleChange(event) {
-        //has to match name in elements below 
-        //use square brackets when you want to change a variable and not a specific costant in the state
-        //the name is from the input fields and that state has to match
         this.setState({ [event.target.name]: event.target.value })
     }
 
@@ -30,14 +26,12 @@ import Styles from './LoginComponent.module.css'
 
         AuthenticationService.executeJwtAuthenticationService(this.state.username, this.state.password).then(
             (response)=> {
-                AuthenticationService.registerSuccessFullLoginForJwt(this.state.username, response.data.token);
-                this.setState({ShowSuccessMessage: true})
+                AuthenticationService.registerSuccessFullLoginForJwt(this.state.username, response.data);
+                this.setState({ShowSuccessMessage: true});
                 this.props.history.push(`/welcome/${this.state.username}`)
-                
             }
         ).catch(()=> {
             this.setState({hasLoginFailed: true, ShowSuccessMessage:false})
-             console.log('failed')
         })
     }
 
