@@ -27,16 +27,6 @@ state = {
                film = null
         }
 
-        // if(this.props.id){
-        //     film = 'movie'
-        //     switchid = this.props.id
-        // }
-
-        //     if(this.props.tvid){
-        //         switchid = this.props.tvid
-        //        film = 'tv'
-        //     }
-
        axios.get(`https://api.themoviedb.org/3/${film}/${switchid}?api_key=${keys}&language=en-US`)
        .then(Response => {
            this.setState({selectedPost: Response.data})

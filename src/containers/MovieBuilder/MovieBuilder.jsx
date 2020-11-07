@@ -11,8 +11,6 @@ import NewUserComponent from '../../components/NewUserComponent/NewUserComponent
 import ListFavoritesComponent from '../../components/ListFavorites/ListFavorites';
 
 
-
-
 class MovieBuilder extends Component {
 
   render() {

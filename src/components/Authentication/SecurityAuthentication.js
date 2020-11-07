@@ -7,8 +7,8 @@ import setJWTToken from '../../SecurityUtils/setJWTToken';
 
 export const createNewUser = (newUser, history) => async dispatch =>{
     try {
-        await axios.post("/api/users/register", newUser);
-        history.push("/login")
+        await axios.post("http://localhost:8080/api/auth/login/register", newUser);
+        history.push("/SignIn")
         dispatch({
             type: GET_ERRORS,
             payload: {}
@@ -24,7 +24,7 @@ export const createNewUser = (newUser, history) => async dispatch =>{
 export const login = LoginRequest => async dispatch => {
     try {
     //axios post => login request
-   const res = await axios.post("/api/users/login", LoginRequest);
+   const res = await axios.post("http://localhost:8080/api/auth/login", LoginRequest);
     //extract the token from the rest data
     const { token } = res.data
     //store the token in the local storage

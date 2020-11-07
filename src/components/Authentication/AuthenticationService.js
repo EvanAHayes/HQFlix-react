@@ -59,14 +59,15 @@ class AuthenticationService {
 
     }
 
-    registerSuccessFullLoginForJwt(username, token) {
+    registerSuccessFullLoginForJwt = (username, token) => {
         sessionStorage.setItem('authenticatedUser', username)
         //this.setupAxiosInterceptors(this.createJWTToken(token))
 
         if(token){
             axios.defaults.headers.common["Authorization"] = this.createJWTToken(token);
             localStorage.setItem("jwtToken", this.createJWTToken(token))
-            jwt_decode(token)
+           jwt_decode(token)
+            
         }else{
             delete axios.defaults.headers.common["Authorization"]
         }

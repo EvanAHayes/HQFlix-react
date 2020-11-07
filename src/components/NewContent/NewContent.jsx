@@ -136,8 +136,6 @@ class NewContent extends Component {
         let ShowMorePopularTvShowResultsButton = <Button clicked={() => this.loadDataPopMovie()}> Show More </Button>;
 
 
-
-
         const ids = (id) => {
             let el = []
             this.state.GenreData.forEach(genreids => {

@@ -1,60 +1,16 @@
 import React, {Component} from "react";
 import styles from './NewInTheatersDisplay.module.css';
 import AuthenticationService from '../../Authentication/AuthenticationService.js';
-import FavoritesService from '../../API/FavoritesService.js';
+import FavoritesButton from "../../UI/favoritesButton";
 
-class NewInTheatersDisplay extends Component{
-    constructor(){
-        super();
-        this.state = {
-            favorites: [],
-           favorite: false
-        }
-    }
-
-    componentDidMount(){
-        this.refreshFavorites();
-    }
-
-    refreshFavorites(){
-        const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-        let user = AuthenticationService.getLoggedInUserName();
-        if(isUserLoggedIn){     
-          FavoritesService.GetFavorites(user).then(response => {
-              this.setState({favorites: response.data})
-              console.log(this.state.favorites)
-          })
-        }
-    }
-
-    changeColor(){
-
-       this.setState({favorite: !this.state.favorite});
-
-       if(!this.state.favorite){
-
-        let favoriteDetails = {
-        title: this.props.title,
-        description: this.props.overview,
-        poster_path: this.props.image,
-        movieID: this.props.id
-       }
-
-    FavoritesService.CreateFavorites(favoriteDetails).then();
-     } 
-
-    }
-
+class NewInTheatersDisplay extends Component{                                   
+    
 render(){
 
 const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
-let btn_class = this.state.favorite ? <i id={styles.heartIcon} className={"fas fa-heart"} style={{color: "red"}} onClick={this.changeColor.bind(this)}>remove to favorites</i> : 
-                                    <i id={styles.heartIcon} className={"far fa-heart"} style={{color: "red"}} onClick={this.changeColor.bind(this)}>add from favorites</i>;
-
-
+    
 const limitTitle = (title, limit = 150) => {
     const newtitle = [];
-
      if(title.length > limit){
          title.split(' ').reduce((acc, cur) => {
             if(acc + cur.length <= limit){
@@ -74,9 +30,7 @@ return(
             <div className="row">
                 <div className="col-12 col-sm-4">
                     <div className={`${styles.card__cover}`}>
-                       <li value={this.state.poster_path}>
-                        <img id="image" src={`https://image.tmdb.org/t/p/w185/${this.props.image}`} alt={`${this.props.title}`} />
-                        </li>
+                        <img id="image" src={`https://image.tmdb.org/t/p/w185/${this.props.image}`} alt={`${this.props.title}`} />               
                     </div>
                 </div>
 
@@ -85,7 +39,12 @@ return(
                             <li>
                             <h3 className="card__title">{this.props.title}</h3>
                             </li>
-                            {isUserLoggedIn && <div>{btn_class}</div>}
+
+                        {isUserLoggedIn && <div><FavoritesButton id={this.props.id}
+                                                                 title={this.props.title}
+                                                                 overview={this.props.overview}
+                                                                 image={this.props.image} /></div>}
+
                                 <span className="card__category">
                                 {this.props.genre_ids}
                                 </span>

@@ -5,9 +5,10 @@ import Styles from './NewUserComponent.module.css';
 import NewUserService from '../API/NewUserService.js';
 import { withRouter } from "react-router-dom";
 
+
 class NewUserComponent extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
       username: '',
       isUsernameValid: false,
@@ -135,7 +136,7 @@ class NewUserComponent extends Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName
     }
-
+  
     NewUserService.CreateNewUser(RegisterNewUser)
       .then(() => this.props.history.push('/SignIn'))
   }
@@ -176,5 +177,7 @@ class NewUserComponent extends Component {
     )
   }
 }
+
+
 
 export default withRouter(NewUserComponent);
