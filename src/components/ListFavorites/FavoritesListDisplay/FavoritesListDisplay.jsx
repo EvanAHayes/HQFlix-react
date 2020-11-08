@@ -12,7 +12,7 @@ class favoritesListDisplay extends Component{
       </div>
    <div className={styles.back}>
       <h2>{this.props.title}</h2>
-      <p>
+      <p className={styles.overview}>
          {this.props.overview}
       </p>
    </div>

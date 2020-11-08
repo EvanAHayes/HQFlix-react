@@ -38,7 +38,9 @@ class ListFavorites extends Component{
             <div className="container">
          <h1 className="heading">Favorites</h1>
          <div className="row">
+         <div class="card-columns">
          {favoritesListResults}
+         </div>
             </div>
             </div>
         )
