@@ -17,6 +17,7 @@ class ListFavorites extends Component{
          this.setState({allFavorites: UpdatedFavoritesData});
      }).catch(error => {
         console.log(error);
+        
     })
  }
 
