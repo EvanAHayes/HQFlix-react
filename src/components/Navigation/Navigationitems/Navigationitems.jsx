@@ -17,6 +17,7 @@ class navigationItems extends Component {
          <ul className={classes.NavigationItems}>
             {!isUserLoggedIn && <NavItem link="/register">Register</NavItem>}
             {!isUserLoggedIn && <NavItem link="/SignIn">Login</NavItem>}
+            {isUserLoggedIn && <NavItem link={`/welcome:${username}`}>Home</NavItem>}
             {isUserLoggedIn && <NavItem link={`/${username}/favorites`}>Favorites</NavItem>}
             {isUserLoggedIn && <NavItem link="/" clicked={AuthenticationService.logout}>LogOut</NavItem>}
          </ul>

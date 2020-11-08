@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FavoritesService from "../API/FavoritesService";
 import FavoriesList from './FavoritesListDisplay/FavoritesListDisplay';
-//import style from './ListFavorites.module.css'
+
 
 class ListFavorites extends Component{
    state = {
