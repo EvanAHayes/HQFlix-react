@@ -25,7 +25,7 @@ class MovieBuilder extends Component {
               <AuthenticationRoute exact path="/welcome/:name" component={Movie} />
               <AuthenticationRoute exact path="/:name/favorites" component={ListFavoritesComponent} />
               <AuthenticationRoute exact path="/logout" component={LogoutComponent} />
-              <Route component={ErrorComponent} />
+              <Route exact path="/error" component={ErrorComponent} />
             </Switch>
             <Footer />
           </Layout>

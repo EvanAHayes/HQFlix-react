@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FavoritesService from "../API/FavoritesService";
-import FavoriesList from './FavoritesListDisplay/FavoritesListDisplay'
+import FavoriesList from './FavoritesListDisplay/FavoritesListDisplay';
+//import style from './ListFavorites.module.css'
 
 class ListFavorites extends Component{
    state = {
@@ -9,7 +10,7 @@ class ListFavorites extends Component{
  componentDidMount(){
      FavoritesService.GetFavorites().then(res => {
          const FavoritesData = res.data;
-
+         
          const UpdatedFavoritesData = FavoritesData.map(favoritesdata => {
              return {...favoritesdata}
          });
@@ -34,9 +35,11 @@ class ListFavorites extends Component{
         }
 
         return(
-            <div>
-         <h1>Favorites</h1>
+            <div className="container">
+         <h1 className="heading">Favorites</h1>
+         <div className="row">
          {favoritesListResults}
+            </div>
             </div>
         )
     }
