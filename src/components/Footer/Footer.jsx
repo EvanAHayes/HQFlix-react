@@ -26,7 +26,7 @@ const footer = () => (
             <div className="col-12 col-sm-4 col-md-3">
                 <h6 className="footer__title">Contact</h6>
                 <ul className="footer__list">
-                    <li><a href="tel:+18002345678">+1 (800) 234-5678</a></li>
+                    <li><a href="tel:+18002345678">+1 (555) 555-5555</a></li>
                     <li><a href="mailto:hayesevan@rocketmail.com">support@HQflixs.com</a></li>
                 </ul>
                 <ul className="footer__social">
