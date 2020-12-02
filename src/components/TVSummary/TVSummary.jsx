@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import axios from '../../axiosInstances/Axios';
 import Spinner from '../UI/Spinner/Spinner';
 
 
@@ -10,7 +10,7 @@ class TVSummary extends Component{
 
     componentDidUpdate(){
         if(this.props.tvid){
-               axios.get(`http://localhost:8080/api/auth/cinema/tv/${this.props.tvid}`)
+               axios.get(`/cinema/tv/${this.props.tvid}`)
                .then(Response => {
                    this.setState({PostSelection: Response.data})
     }).catch(error => {

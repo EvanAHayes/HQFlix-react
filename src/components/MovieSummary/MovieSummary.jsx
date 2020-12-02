@@ -1,5 +1,5 @@
 import React, { Component }  from 'react';
-import axios from 'axios';
+import axios from '../../axiosInstances/Axios';
 import Spinner from '../UI/Spinner/Spinner';
 
 
@@ -9,7 +9,7 @@ state = {
 }
 
     componentDidUpdate(){
-       axios.get(`http://localhost:8080/api/auth/cinema/movie/${this.props.id}`)
+       axios.get(`/cinema/movie/${this.props.id}`)
        .then(Response => {
            this.setState({selectedPost: Response.data})
        })
