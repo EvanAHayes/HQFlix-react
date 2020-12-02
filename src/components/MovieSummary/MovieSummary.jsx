@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
 import axios from 'axios';
 import Spinner from '../UI/Spinner/Spinner';
-import {keys} from '../../axiosInstances/config';
+
 
 class MovieSummary extends Component {
 state = {
@@ -9,38 +9,10 @@ state = {
 }
 
     componentDidUpdate(){
-//todo: change to case-switch to see if it works 
-        let film = ''
-        let switchid = ''
-
-        switch (this.props.id || this.props.tvid){
-       case this.props.id:
-           switchid = this.props.id
-           film = 'movie';
-           break;
-        case this.props.tvid:
-            switchid = this.props.tvid
-            film = 'tv';
-            break;
-           default:
-               switchid = null
-               film = null
-        }
-
-       axios.get(`https://api.themoviedb.org/3/${film}/${switchid}?api_key=${keys}&language=en-US`)
+       axios.get(`http://localhost:8080/api/auth/cinema/movie/${this.props.id}`)
        .then(Response => {
            this.setState({selectedPost: Response.data})
        })
-
-
-    //     if(this.props.id){
-    //         if(!this.state.selectedPost || (this.state.selectedPost && this.state.selectedPost.id !== this.props.id)){
-    //    axios.get(`https://api.themoviedb.org/3/movie/${this.props.id}?api_key=${keys}&language=en-US`)
-    //    .then(Response => {
-    //        this.setState({selectedPost: Response.data})
-    //    })
-    // }
-    // }
       }
 
     render(){

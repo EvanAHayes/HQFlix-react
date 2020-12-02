@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from '../../axiosInstances/Axios';
-import {keys} from '../../axiosInstances/config';
 import CarouselData from '../../components/Carousel/CarouselDisplay';
 import Carousel from '@brainhubeu/react-carousel';
 import '@brainhubeu/react-carousel/lib/style.css';
@@ -13,7 +12,7 @@ class Carousels extends Component {
     }
 
     componentDidMount(){
-        axios.get(`movie/upcoming?api_key=${keys}&language=en-US&page=1&region=US`)
+        axios.get(`http://localhost:8080/api/auth/cinema/movie/upcoming`)
         .then(Response => {
             const MovieData = Response.data.results;
             const updatedMovieData = MovieData.map(movieData => {

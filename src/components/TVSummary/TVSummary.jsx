@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import {keys} from '../../axiosInstances/config';
 import Spinner from '../UI/Spinner/Spinner';
 
 
@@ -11,7 +10,7 @@ class TVSummary extends Component{
 
     componentDidUpdate(){
         if(this.props.tvid){
-               axios.get(`https://api.themoviedb.org/3/tv/${this.props.tvid}?api_key=${keys}&language=en-US`)
+               axios.get(`http://localhost:8080/api/auth/cinema/tv/${this.props.tvid}`)
                .then(Response => {
                    this.setState({PostSelection: Response.data})
     }).catch(error => {

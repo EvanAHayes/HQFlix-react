@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classes from './NewContent.module.css';
 import axios from '../../axiosInstances/Axios';
-import { keys } from '../../axiosInstances/config';
 import axiosP from 'axios';
 import Display from '../../components/NewContent/NewInTheaters/NewInTheatersDisplay';
 import Button from "../UI/Button/Button";
@@ -11,12 +10,10 @@ import Modal from '../UI/Modal/Modal';
 import MovieModalSummary from '../MovieSummary/MovieSummary';
 import TVModalSummary from '../TVSummary/TVSummary';
 
-
-
-const NewInTheatersURL = `movie/now_playing?api_key=${keys}&language=en-US`;
-const PopularMoviesURL = `movie/popular?api_key=${keys}&language=en-US`;
-const PopularTvShowURL = `tv/popular?api_key=${keys}&language=en-US`;
-const GenreURL = `genre/movie/list?api_key=${keys}&language=en-US`;
+const NewInTheatersURL = `/cinema/movie/now_playing`;
+const PopularMoviesURL = `/cinema/movie/popular`;
+const PopularTvShowURL = `/cinema/tv/popular`;
+const GenreURL = `/cinema/genre`;
 
 class NewContent extends Component {
     state = {
@@ -30,7 +27,8 @@ class NewContent extends Component {
         showTVModal: false,
         MovieID: null,
         TvID: null,
-        black: true
+        black: true,
+        error: true
     }
 
     componentDidMount() {
@@ -65,15 +63,14 @@ class NewContent extends Component {
                 });
 
                 this.setState({
+                    error:false,
                     NewInTheatersData: UpdatedNewInTheatersData,
                     GenreData: GetGenre,
                     PopularMoviesData: UpdatedPopularMovieData,
                     PopularTvShowData: UpdatedPopularTvShowData
                 });
             })
-            ).catch(error => {
-                console.log(error);
-            })
+            ).catch(()=> this.setState({error: true}) )
     }
 
     ShowSpinner() {
@@ -95,6 +92,7 @@ class NewContent extends Component {
         this.GetData();
         this.RemoveSpinner();
     }
+
     loadDataPopMovie = () => {
         this.ShowSpinner();
         this.GetData();
@@ -124,10 +122,10 @@ class NewContent extends Component {
     }
 
     render() {
-
-        let newInTheatersResults = <p>Something went wrong!!!</p>;
-        let PopularMoviesResults = <p>Something went wrong!!!</p>;
-        let PopularTvShowResults = <p>Something went wrong!!!</p>;
+        let Error = <p style={{color:"white", fontSize:"25px"}}>Something went wrong!!! Contact Support </p>
+        let newInTheatersResults = <Spinner />;
+        let PopularMoviesResults = <Spinner />;
+        let PopularTvShowResults = <Spinner />;
         let ShowMorenewInTheatersResults = null;
         let ShowMorePopularMoviesResults = null;
         let ShowMorePopularTvShowResults = null;
@@ -156,7 +154,6 @@ class NewContent extends Component {
 
 
         if (!this.state.error) {
-
             newInTheatersResults = this.state.NewInTheatersData.slice(0, this.state.showItems).map(newInTheatersResults => {
                 return (
                     <Display key={newInTheatersResults.id}
@@ -196,6 +193,12 @@ class NewContent extends Component {
                         overview={PopularTvShowData.overview} />
                 )
             })
+        }
+
+        if(this.state.error){
+          newInTheatersResults = Error;
+          PopularMoviesResults = Error;
+          PopularTvShowResults = Error;
         }
 
         const NewInTheaters = <div className="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="1-tab">

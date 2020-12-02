@@ -1,9 +1,9 @@
 import axios from 'axios';
-//import {key} from './config';
+
 
 //set up all instances for movie get request 
 const instance = axios.create({
-    baseURL: 'https://api.themoviedb.org/3/'
+    baseURL: 'http://localhost:8080/api/auth'
 })
 
 export default instance;
