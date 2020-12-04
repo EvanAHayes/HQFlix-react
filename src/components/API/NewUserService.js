@@ -3,7 +3,7 @@ import axios from 'axios';
 class NewUserService {
 
     CreateNewUser(RegisterNewUser){
-       return axios.post('http://localhost:8080/api/auth/register', RegisterNewUser);
+       return axios.post('http://www.api-hqflix.com/api/auth/register', RegisterNewUser);
     }
 
 }

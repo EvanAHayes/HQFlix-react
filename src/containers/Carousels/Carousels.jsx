@@ -12,7 +12,7 @@ class Carousels extends Component {
     }
 
     componentDidMount(){
-        axios.get(`http://localhost:8080/api/auth/cinema/movie/upcoming`)
+        axios.get(`http://www.api-hqflix.com/api/auth/cinema/movie/upcoming`)
         .then(Response => {
             const MovieData = Response.data.results;
             const updatedMovieData = MovieData.map(movieData => {

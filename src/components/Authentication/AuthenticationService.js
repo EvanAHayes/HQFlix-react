@@ -39,7 +39,7 @@ class AuthenticationService {
 
     executeJwtAuthenticationService(username, password) {
 
-        return axios.post("http://localhost:8080/api/auth/login", {
+        return axios.post("http://www.api-hqflix.com/api/auth/login", {
             username,
             password
         })
