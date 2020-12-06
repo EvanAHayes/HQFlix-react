@@ -4,19 +4,19 @@ import axios from 'axios';
 class FavoritesService {
 
     CreateFavorites(favorite) {
-        return axios.post(`http://www.api-hqflix.com/api/users/favorites`, favorite);
+        return axios.post(`https://hq-flix.herokuapp.com/api/users/favorites`, favorite);
     }
 
     GetFavorites() {
-        return axios.get(`http://www.api-hqflix.com/api/users/all`)
+        return axios.get(`https://hq-flix.herokuapp.com/api/users/all`)
     }
 
     GetSingleFavorite(id) {
-        return axios.get(`http://www.api-hqflix.com/api/users/${id}`)
+        return axios.get(`https://hq-flix.herokuapp.com/api/users/${id}`)
     }
 
     DeleteFavorite(id) {
-        return axios.delete(`http://www.api-hqflix.com/api/users/${id}`)
+        return axios.delete(`https://hq-flix.herokuapp.com/api/users/${id}`)
     }
 }
 
