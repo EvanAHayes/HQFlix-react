@@ -3,7 +3,7 @@ import axios from 'axios';
 class NewUserService {
 
     CreateNewUser(RegisterNewUser){
-       return axios.post('https://hq-flix.herokuapp.com/api/auth/register', RegisterNewUser);
+       return axios.post('https://www.api-hqflix.com/api/auth/register', RegisterNewUser);
     }
 
 }

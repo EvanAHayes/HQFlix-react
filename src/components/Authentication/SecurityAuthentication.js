@@ -24,7 +24,7 @@ export const createNewUser = (newUser, history) => async dispatch =>{
 export const login = LoginRequest => async dispatch => {
     try {
     //axios post => login request
-   const res = await axios.post("http://www.api-hqflix.com/api/auth/login", LoginRequest);
+   const res = await axios.post("https://www.api-hqflix.com/api/auth/login", LoginRequest);
     //extract the token from the rest data
     const { token } = res.data
     //store the token in the local storage

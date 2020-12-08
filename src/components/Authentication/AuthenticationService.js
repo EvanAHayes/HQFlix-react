@@ -39,7 +39,7 @@ class AuthenticationService {
 
     executeJwtAuthenticationService(username, password) {
 
-        return axios.post("https://hq-flix.herokuapp.com/api/auth/login", {
+        return axios.post("https://www.api-hqflix.com/api/auth/login", {
             username,
             password
         })
