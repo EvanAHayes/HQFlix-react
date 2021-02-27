@@ -263,6 +263,7 @@ class NewContent extends Component {
                                 </div>
                             </div>
                         </div>
+
                         <div className="container">
                             <div className="tab-content" id="myTabContent">
                                 {NewInTheaters}
@@ -270,6 +271,7 @@ class NewContent extends Component {
                                 {PopularTvShow}
                             </div>
                         </div>
+                        
                     </div>
                 </section>
             </Aux>
